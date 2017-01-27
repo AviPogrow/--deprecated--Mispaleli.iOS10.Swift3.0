@@ -17,33 +17,25 @@
 import Foundation
 import UIKit
 
-protocol TileDragDelegateProtocol {
-  func tileView(_ tileView: TileView, didDragToPoint: CGPoint)
-}
 
-//1
 class TileView:UIImageView {
-  //2
-  var letter: String
-  
-  //3
-  var isMatched: Bool = false
+
   
   fileprivate var xOffset: CGFloat = 0.0
   fileprivate var yOffset: CGFloat = 0.0
   
-  var dragDelegate: TileDragDelegateProtocol?
+  
   
   fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
   
-  //4 this should never be called
+  // this should never be called
   required init?(coder aDecoder:NSCoder) {
     fatalError("use init(letter:, sideLength:")
   }
   
-  //5 create a new tile for a given letter
+  // create a new tile for a given letter
   init(letter:String, sideLength:CGFloat) {
-    self.letter = letter
+    
     
     //the tile background
     let image = UIImage(named: letter)!
@@ -52,13 +44,10 @@ class TileView:UIImageView {
     //references to superview's "self" must take place after super.init
     super.init(image:image)
     
-	
-	//this calculation for frame is not for placing the tiles but for placing the
-	//tiles subviews and shadows!!!!!!
 	let scale = sideLength / image.size.width
 	
-	let aspectRatio = image.size.height / image.size.width
-	print(" the value for aspectRation is \(aspectRatio)")
+	_ = image.size.height / image.size.width
+
 	
 	_ = image.size.width / image.size.height
 	
@@ -66,11 +55,7 @@ class TileView:UIImageView {
 	
 	self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
     
-	
-	print("the frame value is \(frame)")
-	print("the value for scale is \(scale)")
-	
-	/*
+/*
 	//add a letter on top
     let letterLabel = UILabel(frame: self.bounds)
     letterLabel.textAlignment = NSTextAlignment.Center

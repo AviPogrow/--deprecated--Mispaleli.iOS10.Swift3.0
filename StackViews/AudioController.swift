@@ -24,9 +24,10 @@ fileprivate var audio = [String:AVAudioPlayer]()
   
 func preloadAudioEffects(_ effectFileNames:[String]) {
     for effect in AudioEffectFiles {
-      //1 get the file path URL
+      
+        //1 get the file path URL
       let soundPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent(effect)
-		print("the value for sound path is \(soundPath)")
+	
 		
 	    let soundURL = URL(fileURLWithPath: soundPath)
       
