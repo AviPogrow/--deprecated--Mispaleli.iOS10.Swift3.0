@@ -39,7 +39,7 @@ class NameEditorViewController: UIViewController {
 	
    
     fileprivate func animateView(_ view: UIView,  toHidden hidden: Bool) {
-		UIView.animate(withDuration: 1.0,
+		UIView.animate(withDuration: 0.8,
 		 delay: 0.2,
 		usingSpringWithDamping: 0.8,
 		initialSpringVelocity: 10.0, options: [], animations: { ()
