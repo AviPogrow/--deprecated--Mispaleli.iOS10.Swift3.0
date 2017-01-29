@@ -113,13 +113,13 @@ class NameEditorViewController: UIViewController {
 	
 	  for i in imageStringArray {
  		let newString = i
-		let newKapitelString = i + "kapitel"
+		let newKapitelString = i + "Kapitel"
 	
 		print("\(newString) and \(newKapitelString)")
 	
         letter = LetterInName(context: sharedContext)
 		letter.hebrewLetterString = "\(newString)"
-        letter.kapitelImageString = "\(newString)" + "kapitel"
+        letter.kapitelImageString = "\(newString)" + "Kapitel"
         
         letter.person = self.person
 

@@ -97,12 +97,13 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     func changeChapter(_ gesture:UISwipeGestureRecognizer) {
         
-       //var chapter = kapitelString
+       
         
        if gesture.direction == .right {
             
             currentLocalIndex = (currentLocalIndex + 1)
-            bookTextView.backgroundColor = UIColor.red
+            //bookTextView.backgroundColor = UIColor.red
+        
         
         
         }
@@ -110,7 +111,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         if gesture.direction == .left {
            
             currentLocalIndex = (currentLocalIndex - 1)
-            bookTextView.backgroundColor = UIColor.cyan
+            //bookTextView.backgroundColor = UIColor.cyan
         }
         
         updateNameDisplay()
@@ -132,8 +133,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
         }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	
 		audioController.playEffect(SoundPop)
@@ -148,6 +148,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 		audioController.playEffect(SoundWin)
 		dismiss(animated: true, completion: nil)
      }
+    
+    
     func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
         
         // the default is to have 20 buttons across the screen
@@ -179,24 +181,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             imageView.backgroundColor = UIColor.lightGray
             
             let image = UIImage(named: lettr.hebrewLetterString!)
-            
-            //get a referene to the path to the SampleData.plist
-            let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
-            
-            //pull out the array holding one dictionary
-            let dataArray = NSArray(contentsOfFile: path!)!
-            print("data array looks like this \(dataArray)")
-            
-            
-            var textDict  = dataArray.firstObject as! NSDictionary
-            
-            bookTextView.text = textDict["LamedLetterKapitel"] as! String
-            
-            //bookTextView.text = textDict[(lettr.kapitelImageString)!] as! String
-            
         //****************************************************************************
-            //   let text = lettr.kapitelImageString
-            
             imageView.image = image
             imageView.frame = CGRect(
                 x: x + (CGFloat(column * -19)),
@@ -208,9 +193,26 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             imageView.contentMode = .scaleAspectFill
             
             
-            print("the value of index is \(index) and \(currentLocalIndex)")
+            
             if index == currentLocalIndex {
+        
+        //get a referene to the path to the SampleData.plist
+        let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
+        
+        //pull out the array holding one dictionary
+        let dataArray = NSArray(contentsOfFile: path!)!
                 
+        //extract the first object from the array
+        // which will be a dictionary with key:Values for all Kapitlach
+        var textDict  = dataArray.firstObject as! NSDictionary
+                
+        //get the string for the current kapitel for current letter
+        var textStringForKapitel = "\(lettr.kapitelImageString!)"
+        
+        //Use the string as a key to extract the associated value 
+        // use the associated string to set the bookTextView
+        bookTextView.text = textDict[textStringForKapitel] as! String
+        print("state of bookTextView.text is \(bookTextView.text.description)")
                 
                 imageView.alpha = 0.5
                 imageView.layer.borderWidth = 1.35
@@ -228,6 +230,37 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         }
     }
 
+    /*
+     func loadKapitelForCurrentLetter() {
+     
+     //1. get a referene to the path to the SampleData.plist
+     let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
+     
+     //2. pull out the array holding one dictionary
+     let dataArray = NSArray(contentsOfFile: path!)!
+     print("data array looks like this \(dataArray)")
+     
+     //3. extract first object from array which is an NSDictionary
+     // store it in textDict
+     var textDict  = dataArray.firstObject as! NSDictionary
+     
+     //4.get the string for the current kapitel for current letter
+     
+     var textStringForKapitel = "\(lettr.kapitelImageString!)"
+     
+     //5. Use the string as a key to extract the associated value
+     // use the associated string value to set the bookTextView.text property
+     
+     bookTextView.text = textDict[textStringForKapitel] as! String
+     }
+     */
+    
+    
+    
+    
+    
+    
+    
     deinit {
 		print("deinint \(self)")
 	}
