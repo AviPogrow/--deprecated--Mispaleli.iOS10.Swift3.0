@@ -63,21 +63,7 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 	
 	}
 	
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   		 if segue.identifier == "ShowKapitlach" {
-	
-			let kapitlachViewController = segue.destination as! KapitlachViewController
-			let indexPath = sender as! IndexPath
-			let person = fetchedResultsController.object(at: indexPath)
-			
-			kapitlachViewController.person = person 
-			
-			} else if segue.identifier == "ShowNameEditor" {
-		
-			_ = sender as! UIBarButtonItem
-			 _ = segue.destination as! NameEditorViewController
-        }
-	}
+   
 
 	//keep track if view controller is in edit mode the user can't open the nameEditor scene
 	override func setEditing(_ editing: Bool, animated: Bool) {
@@ -148,6 +134,28 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
       tableView.deselectRow(at: indexPath, animated: true)
       performSegue(withIdentifier: "ShowKapitlach", sender: indexPath)
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowKapitlach" {
+            
+            let kapitlachViewController = segue.destination as! KapitlachViewController
+            let indexPath = sender as! IndexPath
+            let person = fetchedResultsController.object(at: indexPath)
+            
+            kapitlachViewController.person = person
+            
+        } else if segue.identifier == "ShowNameEditor" {
+            
+            _ = sender as! UIBarButtonItem
+            _ = segue.destination as! NameEditorViewController
+        }
+    }    
+    
+    
+    
+    
+    
+    
     var row = 0
     override  func tableView(_ tableView: UITableView,
   		heightForRowAt indexPath: IndexPath) -> CGFloat {

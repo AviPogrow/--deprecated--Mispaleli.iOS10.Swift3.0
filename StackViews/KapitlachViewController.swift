@@ -9,11 +9,15 @@ import UIKit
 import CoreData
 import AVFoundation
 
-class KapitlachViewController: UIViewController,
-			UITableViewDelegate, UITableViewDataSource , NSFetchedResultsControllerDelegate {
+class KapitlachViewController: UIViewController, NSFetchedResultsControllerDelegate {
 	
-	
-	@IBOutlet weak var tapOutsideBox: UIButton!
+    var currentLocalIndex: Int = 0
+    
+    @IBOutlet weak var gameView: UIView!
+    
+   
+    @IBOutlet weak var bookTextView: UITextView!
+   
 	var person:Person!
 	
 	fileprivate  var audioController: AudioController
@@ -43,7 +47,7 @@ class KapitlachViewController: UIViewController,
         
         }()
 	
-	@IBOutlet weak var tableView: UITableView!
+	
 	
 	required init?(coder aDecoder: NSCoder) {
 		
@@ -64,28 +68,73 @@ class KapitlachViewController: UIViewController,
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		automaticallyAdjustsScrollViewInsets = false 
+          addGestures()
+        
+        drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
+      
 		
-		tableView.layer.cornerRadius = 10
-		
-		let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KapitlachViewController.close))
-		gestureRecognizer.cancelsTouchesInView = false
-		gestureRecognizer.delegate = self
-		view.addGestureRecognizer(gestureRecognizer)
-		
-		view.backgroundColor = UIColor.clear
-		
-		// Step 2: invoke fetchedResultsController.performFetch(nil) here
-       		 do {
+        do {
             try fetchedResultsController.performFetch()
        		 } catch {}
-        
     }
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
 	
-		tapOutsideBox.layer.cornerRadius = 5
+    func addGestures() {
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
+        
+        swipeRightGesture.direction = .right
+        
+        bookTextView.addGestureRecognizer(swipeRightGesture)
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
+        
+        swipeLeftGesture.direction = .left
+        
+        bookTextView.addGestureRecognizer(swipeLeftGesture)
+    }
+    
+    
+    func changeChapter(_ gesture:UISwipeGestureRecognizer) {
+        
+       //var chapter = kapitelString
+        
+       if gesture.direction == .right {
+            
+            currentLocalIndex = (currentLocalIndex + 1)
+            bookTextView.backgroundColor = UIColor.red
+        
+        
+        }
+     
+        if gesture.direction == .left {
+           
+            currentLocalIndex = (currentLocalIndex - 1)
+            bookTextView.backgroundColor = UIColor.cyan
+        }
+        
+        updateNameDisplay()
+    }
+    
+    
+    
+    //update the text view with chapter Text
+    // update the gameView view
+    func updateNameDisplay(){
+        
+        for view in gameView.subviews {
+            view.removeFromSuperview()
+        }
+        for view in bookTextView.subviews {
+            view.removeFromSuperview()
+        }
+        
+    drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
+        }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 	
 		audioController.playEffect(SoundPop)
 	}
@@ -99,172 +148,87 @@ class KapitlachViewController: UIViewController,
 		audioController.playEffect(SoundWin)
 		dismiss(animated: true, completion: nil)
      }
-    
-    // MARK: - Table View Data Source Methods
-    func numberOfSections(in tableView: UITableView) -> Int {
-		
-	 return fetchedResultsController.sections!.count
- 	 }
-	
-	  // MARK: - UITableViewDelegate
-  
-	var row = 0
-   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-	let separatorRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 0.5, width: tableView.bounds.size.width - 15, height: 0.5)
-    let separator = UIView(frame: separatorRect)
-    separator.backgroundColor = tableView.separatorColor
-    let viewRect = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.sectionHeaderHeight)
-    let view = UIView(frame: viewRect)
-	view.addSubview(separator)
-	view.backgroundColor = UIColor.white
-	
-	// the default is to have 20 buttons across the screen
-		let columnsPerPage = 15
-	
-	
-		//distance from right side of screen
-		let marginX = view.bounds.width - 26
-	
-		//the distance from the top of the cell's view
-		var marginY: CGFloat = 5
-	
-		// first row across is numbered 0 and set as default
-		  row = 0
-	
-		// first column going down is numbered 0 and set as default
-		var column = 0
-	
-		// set x to the value of margin x (0-2)
-		let x = marginX
-	
-        for (_, lettr) in person.lettersInName.enumerated() {
-
-		let imageView = UIImageView()
-		let image = UIImage(named: lettr.hebrewLetterString!)
-	
-	    _ = CGRect(x: 5,
-	        y: 2,
-	       width: 20,
-	       height: 20)
-	 
-	    imageView.image = image
-	
-	    imageView.frame = CGRect(
-		x: x + (CGFloat(column * -19)),
-		
-		y: marginY,
-		
-		width: 20, height: 20)
-	
-		imageView.contentMode = .scaleAspectFill
-		
-		view.addSubview(imageView)
-		
-		column += 1
-		if column == columnsPerPage {
-		column = 0;row = row + 1; marginY = marginY + 30
-		
-		}
-	}
-		return view
-  }
-	
-	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-   
-	 return "Psalm 119 In Order of The Letters"
-  	}
-	
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     let sectionInfo = self.fetchedResultsController.sections![section]
-		
-     return sectionInfo.numberOfObjects
-    }
-	
-	var aspectRatioForImage = 1/1
-	
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-	
-	let CellIdentifier = "KapitelCell"
-	
-	let  cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath)
-
-	let letter = fetchedResultsController.object(at: indexPath) 
-	let kapitelImageString = letter.kapitelImageString
-	
-	let imageForKapitel = UIImage(named: kapitelImageString!)
-	
-	_ = tableView.bounds.size.width / imageForKapitel!.size.width
-	let kapitelSide:CGFloat = tableView.bounds.size.width
-	
-	//set up the kapitel image view
-	let kapitelImageView = TileView(letter: kapitelImageString!, sideLength: kapitelSide)
-	
-	if UIImage(named: kapitelImageString!) != nil {
-	
-	cell.contentView.addSubview(kapitelImageView)
-	}
-    return cell
+    func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
+        
+        // the default is to have 20 buttons across the screen
+        let columnsPerPage = 15
+        
+        
+        //distance from right side of screen
+        let marginX = view.bounds.width - 26
+        
+        //the distance from the top of the cell's view
+        var marginY: CGFloat = 5
+        
+        // first row across is numbered 0 and set as default
+        var row = 0
+        
+        // first column going down is numbered 0 and set as default
+        var column = 0
+        
+        // set x to the value of margin x (0-2)
+        let x = marginX
+        
+        
+        //********* Draw Hebrew Letters of Name on GameView
+        //********************************************************************************
+        
+        for (index, lettr) in person.lettersInName.enumerated() {
+            
+            let imageView = UIImageView()
+            imageView.backgroundColor = UIColor.lightGray
+            
+            let image = UIImage(named: lettr.hebrewLetterString!)
+            
+            //get a referene to the path to the SampleData.plist
+            let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
+            
+            //pull out the array holding one dictionary
+            let dataArray = NSArray(contentsOfFile: path!)!
+            print("data array looks like this \(dataArray)")
+            
+            
+            var textDict  = dataArray.firstObject as! NSDictionary
+            
+            bookTextView.text = textDict["LamedLetterKapitel"] as! String
+            
+            //bookTextView.text = textDict[(lettr.kapitelImageString)!] as! String
+            
+        //****************************************************************************
+            //   let text = lettr.kapitelImageString
+            
+            imageView.image = image
+            imageView.frame = CGRect(
+                x: x + (CGFloat(column * -19)),
+                
+                y: marginY,
+                
+                width: 20, height: 20)
+            
+            imageView.contentMode = .scaleAspectFill
+            
+            
+            print("the value of index is \(index) and \(currentLocalIndex)")
+            if index == currentLocalIndex {
+                
+                
+                imageView.alpha = 0.5
+                imageView.layer.borderWidth = 1.35
+                imageView.layer.borderColor = UIColor.red.cgColor
+                imageView.layer.cornerRadius = 3
+            }
+            
+            gameView.addSubview(imageView)
+            
+            column += 1
+            if column == columnsPerPage {
+                column = 0;row = row + 1; marginY = marginY + 30
+                
+            }
+        }
     }
 
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-	
-		return tableView.bounds.size.width
-	}
-
-	
-	func drawNewNameInHeaderViewWithPerson(_ person: Person) {
-		
-    // the default is to have 20 buttons across the screen
-		let columnsPerPage = 15
-	
-	
-		//distance from right side of screen
-		let marginX = view.bounds.width - 26
-	
-		//the distance from the top of the cell's view
-		var marginY: CGFloat = 5
-	
-		// first row across is numbered 0 and set as default
-		  row = 0
-	
-		// first column going down is numbered 0 and set as default
-		var column = 0
-	
-		// set x to the value of margin x (0-2)
-		let x = marginX
-	
-		
-		//********* Draw Hebrew Letters of Name on TableView Cell************************
-		//********************************************************************************
-		
-		for (_, lettr) in person.lettersInName.enumerated() {
-		
-		let imageView = UIImageView()
-		let image = UIImage(named: lettr.hebrewLetterString!)
-		
-		imageView.image = image
-		imageView.frame = CGRect(
-		x: x + (CGFloat(column * -19)),
-		
-		y: marginY,
-		
-		width: 20, height: 20)
-		
-		imageView.contentMode = .scaleAspectFill
-		
-		view.addSubview(imageView)
-		
-		column += 1
-		if column == columnsPerPage {
-		column = 0;row = row + 1; marginY = marginY + 30
-
-			}
-		}
-	}	
-	deinit {
+    deinit {
 		print("deinint \(self)")
 	}
 
@@ -311,19 +275,75 @@ extension KapitlachViewController: UIGestureRecognizerDelegate {
 	}
 }
 
+/*
+ func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
+ 
+ // the default is to have 20 buttons across the screen
+ let columnsPerPage = 15
+ 
+ 
+ //distance from right side of screen
+ let marginX = view.bounds.width - 26
+ 
+ //the distance from the top of the cell's view
+ var marginY: CGFloat = 5
+ 
+ // first row across is numbered 0 and set as default
+ var row = 0
+ 
+ // first column going down is numbered 0 and set as default
+ var column = 0
+ 
+ // set x to the value of margin x (0-2)
+ let x = marginX
+ 
+ 
+ //********* Draw Hebrew Letters of Name on TableView Cell************************
+ //********************************************************************************
+ 
+ for (index, lettr) in person.lettersInName.enumerated() {
+ 
+ let imageView = UIImageView()
+ imageView.backgroundColor = UIColor.cyan
+ 
+ let image = UIImage(named: lettr.hebrewLetterString!)
+ //****************************************************************************
+ //let text = lettr.kapitelImageString
+ // print("the value of kapitelString is \(text)")
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ imageView.image = image
+ imageView.frame = CGRect(
+ x: x + (CGFloat(column * -19)),
+ 
+ y: marginY,
+ 
+ width: 20, height: 20)
+ 
+ imageView.contentMode = .scaleAspectFill
+ 
+ if index == currentLocalIndex {
+ imageView.alpha = 0.5
+ imageView.layer.borderWidth = 1.35
+ imageView.layer.borderColor = UIColor.red.cgColor
+ imageView.layer.cornerRadius = 3
+ }
+ 
+ gameView.addSubview(imageView)
+ 
+ 
+  bookTextView.text = lettr.kapitelImageString
+ 
+ 
+ 
+ column += 1
+ if column == columnsPerPage {
+ column = 0;row = row + 1; marginY = marginY + 30
+ 
+ }
+ }
+ }*/
+ 
+*/*/*/

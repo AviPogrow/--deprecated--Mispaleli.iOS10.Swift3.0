@@ -28,20 +28,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-		addPersonEntityToContext()
+		insertSampleData()
         customizeAppearance()
 		
 		return true
 	}
 
-	func addPersonEntityToContext() {
+	func insertSampleData() {
 	
-       let  person1 = NSEntityDescription.insertNewObject(
+        //create a fetch request of object "Person"
+        let fetch =  NSFetchRequest<Person>(entityName: "Person")
+        
+        let count = try! sharedContext.count(for: fetch)
+        
+        if count > 0 {
+            return
+        }
+        
+        let  person1 = NSEntityDescription.insertNewObject(
         forEntityName: "Person",
         into: sharedContext) as! Person
 		
 		person1.personName = "Avraham Pinchus"
 		
 		CoreDataStackManager.sharedInstance().saveContext()
-	}
-}
+        }
+    }
+
+ 
+
+
+
+
+
+
+

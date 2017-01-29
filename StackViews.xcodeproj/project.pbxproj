@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F06DFF71E39067A00A2A476 /* LetterInName+properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */; };
 		7F06DFF91E39084100A2A476 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DFF81E39084100A2A476 /* Person.swift */; };
+		7FCAF7C21E3B8645000B1DE6 /* Tehillim119.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */; };
 		D50F52621D5C8B8F00C0CF82 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D50F525F1D5C8B8F00C0CF82 /* win.mp3 */; };
 		D50F52631D5C8B8F00C0CF82 /* wrong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D50F52601D5C8B8F00C0CF82 /* wrong.m4a */; };
 		D50F52641D5C8B8F00C0CF82 /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D50F52611D5C8B8F00C0CF82 /* ding.mp3 */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LetterInName+properties.swift"; sourceTree = "<group>"; };
 		7F06DFF81E39084100A2A476 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tehillim119.plist; path = ../../AllPeopleVC3.0/AllPeopleVC3.0/Tehillim119.plist; sourceTree = "<group>"; };
 		D50F525F1D5C8B8F00C0CF82 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		D50F52601D5C8B8F00C0CF82 /* wrong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.m4a; sourceTree = "<group>"; };
 		D50F52611D5C8B8F00C0CF82 /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				D5B630F21D52531B00D2FF79 /* Person+properties.swift */,
 				D5B630F41D5253AB00D2FF79 /* LetterInName.swift */,
 				7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */,
+				7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				D525624E1D148FEB0021DE4D /* Main.storyboard in Resources */,
 				D5C0BAF61D4AA27B0059A6A6 /* ButtonTap.wav in Resources */,
 				D5C0BB0C1D4AC7EC0059A6A6 /* button_press.wav in Resources */,
+				7FCAF7C21E3B8645000B1DE6 /* Tehillim119.plist in Resources */,
 				D5C0BB021D4AC7380059A6A6 /* NewWave.mp3 in Resources */,
 				D50F52631D5C8B8F00C0CF82 /* wrong.m4a in Resources */,
 				D5C0BAFE1D4AC6DF0059A6A6 /* Scrape.wav in Resources */,
