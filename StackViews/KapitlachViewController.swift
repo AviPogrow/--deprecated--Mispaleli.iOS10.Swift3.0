@@ -116,7 +116,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     // 3. ViewDidLayoutSubviews
     
     override func viewDidLayoutSubviews() {
-        bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
+        //print("scroll range function invoked")
+        //bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
     }
     
     //4. supported orientations
@@ -253,25 +254,25 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
     
         
-        let bookTextViewHeight = ScreenHeight * 0.90
+        let bookTextViewHeight = ScreenHeight * 0.95
         bookTextView.frame = CGRect(x: 0,
                                     y: ScreenHeight-bookTextViewHeight,
-                                    width: ScreenWidth,
+                                    width: ScreenWidth - 5,
                                     height: bookTextViewHeight)
         
-        //bookTextView.frame = storyTextView.bounds
+       // bookTextView.frame = storyTextView.bounds
         bookTextView.textAlignment = .center
-        //bookTextView.makeTextWritingDirectionRightToLeft(self)
+        bookTextView.makeTextWritingDirectionRightToLeft(self)
         
-        bookTextView.font = UIFont.systemFont(ofSize: 30)
+        bookTextView.font = UIFont.systemFont(ofSize: 25)
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
         bookTextView.text = textDict[textStringForKapitel] as! String
         
-        bookTextView.contentOffset = .init(x: 5.0, y: 2.0)
-        bookTextView.scrollRectToVisible(
-            CGRect(origin: .zero, size: bookTextView.bounds.size),
-            animated: false)
+        //bookTextView.contentOffset = .init(x: 5.0, y: 2.0)
+        //bookTextView.scrollRectToVisible(
+        //    CGRect(origin: .zero, size: bookTextView.bounds.size),
+        //    animated: false)
         
         
         print("state of bookTextView.text is \(bookTextView.text.description)")
