@@ -11,24 +11,35 @@ import AVFoundation
 
 class KapitlachViewController: UIViewController, NSFetchedResultsControllerDelegate {
 	
+    
+    //A. 1 instance variable to keep track of which letter
+    // and which kapitel we are currently hightlighting and presenting
     var currentLocalIndex: Int = 0
     
+    
+    //B. 3 View instance variables
+    //1
     @IBOutlet weak var gameView: UIView!
     
-   
+    //2
     @IBOutlet weak var storyTextView: UIView!
+    
+    //3
     var bookTextView: UITextView!
   
-   
-	var person:Person!
-	
-	fileprivate  var audioController: AudioController
-	
+    
+    //C. 3 Data Model instance variables
+    
+    //1. person object to pass into fetch request
+    var person:Person!
+    
+    //2. managedObject context to pass to the fetchedResultsController
+    // to interface with core data stack
 	lazy var sharedContext: NSManagedObjectContext = {
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
 	
-	
+	//3. FRC to make fetchRequest/ hold the results/ and update the tableView
     lazy var fetchedResultsController: NSFetchedResultsController<LetterInName> = {
         
         let fetchRequest = NSFetchRequest<LetterInName>()
@@ -49,16 +60,20 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         }()
 	
+    //D. 1 instance variable to handle audio effects
+    fileprivate  var audioController: AudioController
 	
-	
-	required init?(coder aDecoder: NSCoder) {
+    
+    // MARK:- 4 View Controller methods
+    //1. required init
+    required init?(coder aDecoder: NSCoder) {
 		
 		audioController = AudioController()
 		audioController.preloadAudioEffects(AudioEffectFiles)
 		
 		super.init(coder: aDecoder)
 		
-		// tell UIKit that his VC uses a custom presentation
+		// tell UIKit that this VC uses a custom presentation
 		modalPresentationStyle = .custom
 		
 		//set the delegate that will call the methods for the 
@@ -66,26 +81,52 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 		transitioningDelegate = self
 		
 	}
-	
+	//2. viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-          addGestures()
-        
-        gameView.layer.borderWidth = 1.35
-        gameView.layer.borderColor = UIColor.red.cgColor
-        gameView.layer.cornerRadius = 10
-        
-        
-        drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
-      
-		
+        //1. data model  fetch method
         do {
             try fetchedResultsController.performFetch()
-       		 } catch {}
+        } catch {}
+        
+        
+        //2. Update gameView and textView with newly fetched data
+        updateNameAndTextDisplay()
+        
+        
+        //3. color the gameView
+        colorGameView()
+       
+        
+        
+        //4. add two gesture recognizers to detect swipe
+        // right or left
+        addGestures()
+        
+        //5. add views to the super view
+        
+        
+        //6. position the views in the superView
+        
+        //7. play sound during scene loading
+        audioController.playEffect(SoundPop)
     }
-	
-	
+    
+    // 3. ViewDidLayoutSubviews
+    
+    override func viewDidLayoutSubviews() {
+        bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
+    }
+    
+    //4. supported orientations
+    //override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    //    return .all
+   // }
+    
+    
+    
+    //1. swipe gestures to turn the page
     func addGestures() {
         
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
@@ -101,7 +142,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         storyTextView.addGestureRecognizer(swipeLeftGesture)
     }
     
-    
+    //2. Change the highlighted letter and displayed text
     func changeChapter(_ gesture:UISwipeGestureRecognizer) {
         
        audioController.playEffect(SoundPop)
@@ -115,42 +156,41 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             currentLocalIndex = (currentLocalIndex - 1)
             
         }
-        updateNameDisplay()
+        updateNameAndTextDisplay()
     }
     
-    //update the text view with chapter Text
-    // update the gameView view
-    func updateNameDisplay(){
+    //3. load and reload the gameView with highlighted letter
+    // load and reload the textView
+    func updateNameAndTextDisplay(){
         
         for view in gameView.subviews {
             view.removeFromSuperview()
         }
        
-        drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
-        }
+        drawNameAndLoadText(withPerson: person, atCurrentIndex: currentLocalIndex)
+    }
     
-     override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+    //4. Color the views
+    func colorGameView() {
+        gameView.layer.borderWidth = 1.35
+        gameView.layer.borderColor = UIColor.red.cgColor
+        gameView.layer.cornerRadius = 10
+    }
 	
-		audioController.playEffect(SoundPop)
-	}
-	
+    //5. If user taps cancel dismiss VC with sound effect
 	@IBAction func closeButtonPressed(_ sender: AnyObject) {
 		audioController.playEffect(SoundWin)
 		dismiss(animated: true, completion: nil)
     }
 	
-	func close() {
-		audioController.playEffect(SoundWin)
-		dismiss(animated: true, completion: nil)
-     }
+	
     
     
     
  
- func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
+ func drawNameAndLoadText(withPerson person: Person, atCurrentIndex: Int) {
         
- // the default is to have 20 buttons across the screen
+ // the default is to have 15 buttons across the screen
     
     let columnsPerPage = 15
     
@@ -223,7 +263,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         bookTextView.textAlignment = .center
         //bookTextView.makeTextWritingDirectionRightToLeft(self)
         
-        bookTextView.font = UIFont.systemFont(ofSize: 25)
+        bookTextView.font = UIFont.systemFont(ofSize: 30)
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
         bookTextView.text = textDict[textStringForKapitel] as! String
@@ -253,26 +293,17 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             }
         }
     }
-    func setupConstraints() {
-        // 1
-        bookTextView.translatesAutoresizingMaskIntoConstraints = false
-        // 2
-        bookTextView.leadingAnchor.constraint(
-            equalTo: view.readableContentGuide.leadingAnchor).isActive = true
-        bookTextView.trailingAnchor.constraint(
-            equalTo: view.readableContentGuide.trailingAnchor).isActive = true
-    }
+  
     
-    // MARK:- Scroll text on rotation
-    
-    override func viewDidLayoutSubviews() {
-        bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
-    }
+  
     
     // courtesy of
     // http://stackoverflow.com/a/28896715/359578    
     
     fileprivate func visibleRangeOfTextView(_ textView: UITextView) -> NSRange {
+        
+        print("visibleRangeOfTextView inoked")
+        
         let bounds = textView.bounds
         let origin = CGPoint(x: 100,y: 100) //Overcome the default UITextView left/top margin
         let startCharacterRange = textView.characterRange(at: origin)
@@ -291,44 +322,6 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         let endIndex = textView.offset(from: startPosition, to: endPosition)
         return NSMakeRange(startIndex, endIndex)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-     func loadKapitelForCurrentLetter() {
-     
-     //1. get a referene to the path to the SampleData.plist
-     let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
-     
-     //2. pull out the array holding one dictionary
-     let dataArray = NSArray(contentsOfFile: path!)!
-     print("data array looks like this \(dataArray)")
-     
-     //3. extract first object from array which is an NSDictionary
-     // store it in textDict
-     var textDict  = dataArray.firstObject as! NSDictionary
-     
-     //4.get the string for the current kapitel for current letter
-     
-     var textStringForKapitel = "\(lettr.kapitelImageString!)"
-     
-     //5. Use the string as a key to extract the associated value
-     // use the associated string value to set the bookTextView.text property
-     
-     bookTextView.text = textDict[textStringForKapitel] as! String
-     }
-     */
-    
-    
-    
-    
-    
-    
     
     deinit {
 		print("deinint \(self)")
@@ -377,75 +370,4 @@ extension KapitlachViewController: UIGestureRecognizerDelegate {
 	}
 }
 
-/*
- func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
- 
- // the default is to have 20 buttons across the screen
- let columnsPerPage = 15
- 
- 
- //distance from right side of screen
- let marginX = view.bounds.width - 26
- 
- //the distance from the top of the cell's view
- var marginY: CGFloat = 5
- 
- // first row across is numbered 0 and set as default
- var row = 0
- 
- // first column going down is numbered 0 and set as default
- var column = 0
- 
- // set x to the value of margin x (0-2)
- let x = marginX
- 
- 
- //********* Draw Hebrew Letters of Name on TableView Cell************************
- //********************************************************************************
- 
- for (index, lettr) in person.lettersInName.enumerated() {
- 
- let imageView = UIImageView()
- imageView.backgroundColor = UIColor.cyan
- 
- let image = UIImage(named: lettr.hebrewLetterString!)
- //****************************************************************************
- //let text = lettr.kapitelImageString
- // print("the value of kapitelString is \(text)")
- 
 
- 
- 
- imageView.image = image
- imageView.frame = CGRect(
- x: x + (CGFloat(column * -19)),
- 
- y: marginY,
- 
- width: 20, height: 20)
- 
- imageView.contentMode = .scaleAspectFill
- 
- if index == currentLocalIndex {
- imageView.alpha = 0.5
- imageView.layer.borderWidth = 1.35
- imageView.layer.borderColor = UIColor.red.cgColor
- imageView.layer.cornerRadius = 3
- }
- 
- gameView.addSubview(imageView)
- 
- 
-  bookTextView.text = lettr.kapitelImageString
- 
- 
- 
- column += 1
- if column == columnsPerPage {
- column = 0;row = row + 1; marginY = marginY + 30
- 
- }
- }
- }*/
- 
-*/*/*/
