@@ -16,7 +16,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     @IBOutlet weak var gameView: UIView!
     
    
-    @IBOutlet weak var bookTextView: UITextView!
+    @IBOutlet weak var storyTextView: UIView!
+    var bookTextView: UITextView!
+  
    
 	var person:Person!
 	
@@ -70,6 +72,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 		
           addGestures()
         
+        gameView.layer.borderWidth = 1.35
+        gameView.layer.borderColor = UIColor.red.cgColor
+        gameView.layer.cornerRadius = 10
+        
+        
         drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
       
 		
@@ -85,39 +92,31 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         swipeRightGesture.direction = .right
         
-        bookTextView.addGestureRecognizer(swipeRightGesture)
+        storyTextView.addGestureRecognizer(swipeRightGesture)
         
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
         
         swipeLeftGesture.direction = .left
         
-        bookTextView.addGestureRecognizer(swipeLeftGesture)
+        storyTextView.addGestureRecognizer(swipeLeftGesture)
     }
     
     
     func changeChapter(_ gesture:UISwipeGestureRecognizer) {
         
-       
-        
+       audioController.playEffect(SoundPop)
        if gesture.direction == .right {
             
             currentLocalIndex = (currentLocalIndex + 1)
-            //bookTextView.backgroundColor = UIColor.red
-        
-        
-        
         }
      
         if gesture.direction == .left {
            
             currentLocalIndex = (currentLocalIndex - 1)
-            //bookTextView.backgroundColor = UIColor.cyan
+            
         }
-        
         updateNameDisplay()
     }
-    
-    
     
     //update the text view with chapter Text
     // update the gameView view
@@ -126,14 +125,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         for view in gameView.subviews {
             view.removeFromSuperview()
         }
-        for view in bookTextView.subviews {
-            view.removeFromSuperview()
-        }
-        
-    drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
+       
+        drawNewName(withPerson: person, atCurrentIndex: currentLocalIndex)
         }
     
-  override func viewWillAppear(_ animated: Bool) {
+     override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	
 		audioController.playEffect(SoundPop)
@@ -150,51 +146,54 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
      }
     
     
-    func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
+    
+ 
+ func drawNewName(withPerson person: Person, atCurrentIndex: Int) {
         
-        // the default is to have 20 buttons across the screen
-        let columnsPerPage = 15
+ // the default is to have 20 buttons across the screen
+    
+    let columnsPerPage = 15
+    
+    //3. current row and column number
+    var row = 0
+    var column = 1
+    
+    
+    //4. calculate the width and height of each square tile
+    let tileSide = ceil(ScreenWidth / CGFloat(14.5))
+    
+    var  marginX = view.bounds.width - 3
+    let x = marginX
+    
+    
+    var  marginY = (CGFloat(row) * tileSide)
+    var y = marginY + 10
         
-        
-        //distance from right side of screen
-        let marginX = view.bounds.width - 26
-        
-        //the distance from the top of the cell's view
-        var marginY: CGFloat = 5
-        
-        // first row across is numbered 0 and set as default
-        var row = 0
-        
-        // first column going down is numbered 0 and set as default
-        var column = 0
-        
-        // set x to the value of margin x (0-2)
-        let x = marginX
-        
-        
-        //********* Draw Hebrew Letters of Name on GameView
-        //********************************************************************************
-        
-        for (index, lettr) in person.lettersInName.enumerated() {
+
+  //********************** start the for loop ***************************
+   for (index, lettr) in person.lettersInName.enumerated() {
             
-            let imageView = UIImageView()
-            imageView.backgroundColor = UIColor.lightGray
-            
-            let image = UIImage(named: lettr.hebrewLetterString!)
-        //****************************************************************************
-            imageView.image = image
-            imageView.frame = CGRect(
-                x: x + (CGFloat(column * -19)),
+              let tile = TileView(letter: lettr.hebrewLetterString!, sideLength: tileSide)
+ 
+            tile.frame = CGRect(
+                x: x + (CGFloat(column) * -tileSide),  //22 is the same as tileSide
+                // the first letter is drawn
+                // margin x (-3 points from right edge)
+                // + (0 * -22) so it gets drawn -25 from right edge
+                y: y,
                 
-                y: marginY,
-                
-                width: 20, height: 20)
+                width: tileSide, height: tileSide)
             
-            imageView.contentMode = .scaleAspectFill
+            print("******************the value of tileside is \(tileSide)")
+            print("the value of the frame is \(tile.frame)")
             
-            
-            
-            if index == currentLocalIndex {
+            gameView.addSubview(tile)
+    let viewToExplode = gameView.subviews.last
+    let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
+    tile.superview?.addSubview(explode)
+    tile.superview?.sendSubview(toBack: explode)
+    
+    if index == currentLocalIndex {
         
         //get a referene to the path to the SampleData.plist
         let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
@@ -211,25 +210,83 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         //Use the string as a key to extract the associated value 
         // use the associated string to set the bookTextView
+        bookTextView = UITextView()
+        
+        let bookTextViewHeight = ScreenHeight * 0.90
+        bookTextView.frame = CGRect(x: 0,
+                                    y: ScreenHeight-bookTextViewHeight,
+                                    width: ScreenWidth,
+                                    height: bookTextViewHeight)
+        
+        //bookTextView.frame = storyTextView.bounds
+        bookTextView.textAlignment = .center
+        
+        bookTextView.font = UIFont.systemFont(ofSize: 25)
+        bookTextView.isSelectable = false
+        bookTextView.isEditable = false
         bookTextView.text = textDict[textStringForKapitel] as! String
+        
+        bookTextView.contentOffset = .zero
+        bookTextView.scrollRectToVisible(
+            CGRect(origin: .zero, size: bookTextView.bounds.size),
+            animated: false)
+        
+        
         print("state of bookTextView.text is \(bookTextView.text.description)")
                 
-                imageView.alpha = 0.5
-                imageView.layer.borderWidth = 1.35
-                imageView.layer.borderColor = UIColor.red.cgColor
-                imageView.layer.cornerRadius = 3
+                tile.alpha = 1.0
+                tile.layer.borderWidth = 3.35
+                tile.layer.borderColor = UIColor.red.cgColor
+                tile.layer.cornerRadius = 3
             }
             
-            gameView.addSubview(imageView)
+            
+            gameView.addSubview(tile)
+            storyTextView.addSubview(bookTextView)
             
             column += 1
             if column == columnsPerPage {
-                column = 0;row = row + 1; marginY = marginY + 30
+                column = 0; row = row + 1; marginY = marginY + 30
                 
             }
         }
     }
-
+    // MARK:- Scroll text on rotation
+    
+    override func viewDidLayoutSubviews() {
+        bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
+    }
+    
+    // courtesy of
+    // http://stackoverflow.com/a/28896715/359578    
+    
+    fileprivate func visibleRangeOfTextView(_ textView: UITextView) -> NSRange {
+        let bounds = textView.bounds
+        let origin = CGPoint(x: 100,y: 100) //Overcome the default UITextView left/top margin
+        let startCharacterRange = textView.characterRange(at: origin)
+        if startCharacterRange == nil {
+            return NSMakeRange(0,0)
+        }
+        let startPosition = textView.characterRange(at: origin)!.start
+        
+        let endCharacterRange = textView.characterRange(at: CGPoint(x: bounds.maxX, y: bounds.maxY))
+        if endCharacterRange == nil {
+            return NSMakeRange(0,0)
+        }
+        let endPosition = textView.characterRange(at: CGPoint(x: bounds.maxX, y: bounds.maxY))!.end
+        
+        let startIndex = textView.offset(from: textView.beginningOfDocument, to: startPosition)
+        let endIndex = textView.offset(from: startPosition, to: endPosition)
+        return NSMakeRange(startIndex, endIndex)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     /*
      func loadKapitelForCurrentLetter() {
      
