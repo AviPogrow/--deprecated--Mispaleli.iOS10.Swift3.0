@@ -155,7 +155,7 @@ class NameEditorViewController: UIViewController {
 	  case 122: return "TzaddikLetter"
 	  case 123: return "TzaddikSofitLetter"
 	  case 124: return "KufLetter"
-	  case 125: return "SpaceNew11"
+	  case 125: return "SpaceLetter"
 	  case 126: return "RayshLetter"
 	  case 127: return "ShinLetter"
 	  case 128: return "TofLetter"
@@ -237,8 +237,6 @@ class NameEditorViewController: UIViewController {
 		y: y,
 		
 		width: tileSide, height: tileSide)
-		print("******************the value of tileside is \(tileSide)")
-		print("the value of the frame is \(tile.frame)")
 		
 		gameView.addSubview(tile)
 	

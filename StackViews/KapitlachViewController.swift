@@ -184,8 +184,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
                 
                 width: tileSide, height: tileSide)
             
-            print("******************the value of tileside is \(tileSide)")
-            print("the value of the frame is \(tile.frame)")
+           
             
             gameView.addSubview(tile)
     let viewToExplode = gameView.subviews.last
@@ -212,6 +211,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         // use the associated string to set the bookTextView
         bookTextView = UITextView()
         
+    
+        
         let bookTextViewHeight = ScreenHeight * 0.90
         bookTextView.frame = CGRect(x: 0,
                                     y: ScreenHeight-bookTextViewHeight,
@@ -220,13 +221,14 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         //bookTextView.frame = storyTextView.bounds
         bookTextView.textAlignment = .center
+        //bookTextView.makeTextWritingDirectionRightToLeft(self)
         
         bookTextView.font = UIFont.systemFont(ofSize: 25)
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
         bookTextView.text = textDict[textStringForKapitel] as! String
         
-        bookTextView.contentOffset = .zero
+        bookTextView.contentOffset = .init(x: 5.0, y: 2.0)
         bookTextView.scrollRectToVisible(
             CGRect(origin: .zero, size: bookTextView.bounds.size),
             animated: false)
@@ -251,6 +253,16 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             }
         }
     }
+    func setupConstraints() {
+        // 1
+        bookTextView.translatesAutoresizingMaskIntoConstraints = false
+        // 2
+        bookTextView.leadingAnchor.constraint(
+            equalTo: view.readableContentGuide.leadingAnchor).isActive = true
+        bookTextView.trailingAnchor.constraint(
+            equalTo: view.readableContentGuide.trailingAnchor).isActive = true
+    }
+    
     // MARK:- Scroll text on rotation
     
     override func viewDidLayoutSubviews() {
