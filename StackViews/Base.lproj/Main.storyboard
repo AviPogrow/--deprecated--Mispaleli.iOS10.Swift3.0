@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YKW-lJ-AoV">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,30 +18,30 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49P-Kq-V1y">
-                                <rect key="frame" x="0.0" y="282" width="320" height="5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49P-Kq-V1y">
+                                <rect key="frame" x="0.0" y="365.66666666666669" width="414" height="5"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="5Yp-bW-3PB"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqQ-32-jjc">
-                                <rect key="frame" x="0.0" y="288" width="320" height="280"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqQ-32-jjc">
+                                <rect key="frame" x="0.0" y="371.66666666666674" width="414" height="364.33333333333326"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rcb-qK-Uza">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="364.33333333333331"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVK-fx-JeT">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OVu-wH-8sp">
-                                                        <rect key="frame" x="1" y="5" width="373" height="78"/>
+                                                        <rect key="frame" x="1" y="5" width="412" height="86"/>
                                                         <subviews>
                                                             <imageView tag="107" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZayinDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="4jw-tz-LOM">
-                                                                <rect key="frame" x="0.0" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -50,7 +49,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="106" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VovDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="6iU-Gu-4jV">
-                                                                <rect key="frame" x="47" y="0.0" width="43.5" height="78"/>
+                                                                <rect key="frame" x="52" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -58,7 +57,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="105" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeyDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="zAn-x5-JHn">
-                                                                <rect key="frame" x="94.5" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="104" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -66,7 +65,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="104" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DaledDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="Fd1-0h-d05">
-                                                                <rect key="frame" x="141.5" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="156" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -74,7 +73,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="103" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GimmelDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="fEW-0h-jEA">
-                                                                <rect key="frame" x="188.5" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="208" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -82,7 +81,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="102" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BeisDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="9jp-LR-db6">
-                                                                <rect key="frame" x="235.5" y="0.0" width="43.5" height="78"/>
+                                                                <rect key="frame" x="260" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -90,7 +89,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="101" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlephDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="XH9-EO-wK3">
-                                                                <rect key="frame" x="283" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="312" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -98,7 +97,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButtonPng" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-2x-Jcd">
-                                                                <rect key="frame" x="330" y="0.0" width="43" height="78"/>
+                                                                <rect key="frame" x="364" y="0.0" width="48" height="86"/>
                                                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -118,13 +117,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBx-oc-69m">
-                                                <rect key="frame" x="0.0" y="82.5" width="375" height="82.5"/>
+                                                <rect key="frame" x="0.0" y="91" width="414" height="91.333333333333314"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="auH-9P-sa0">
-                                                        <rect key="frame" x="8" y="5" width="359" height="78"/>
+                                                        <rect key="frame" x="8" y="5" width="398" height="86.333333333333314"/>
                                                         <subviews>
                                                             <imageView tag="114" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MemDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="cn9-js-nmJ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -132,7 +131,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="113" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LamedDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="bxI-QQ-thk">
-                                                                <rect key="frame" x="51.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="56.999999999999993" y="0.0" width="55.333333333333321" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -140,7 +139,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="112" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChofSofitDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="iwx-Nk-yQ0">
-                                                                <rect key="frame" x="103" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="114.33333333333334" y="0.0" width="55.000000000000028" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -148,7 +147,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="111" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChofDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="5Tf-mg-0Au">
-                                                                <rect key="frame" x="154.5" y="0.0" width="50" height="78"/>
+                                                                <rect key="frame" x="171.33333333333334" y="0.0" width="55.333333333333314" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -156,7 +155,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="110" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YudDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="VGy-ys-G2L">
-                                                                <rect key="frame" x="206.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="228.66666666666669" y="0.0" width="55.000000000000057" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -164,7 +163,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="109" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TesDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="32C-Ga-Owa">
-                                                                <rect key="frame" x="258" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="285.66666666666674" y="0.0" width="55.333333333333314" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -172,7 +171,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="108" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChesDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="DJd-py-ZqB">
-                                                                <rect key="frame" x="309.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="343" y="0.0" width="55" height="86.333333333333314"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -191,13 +190,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdD-ai-CNw">
-                                                <rect key="frame" x="0.0" y="165" width="375" height="82.5"/>
+                                                <rect key="frame" x="0.0" y="182.33333333333331" width="414" height="91"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="2xs-ZE-hFc">
-                                                        <rect key="frame" x="8" y="5" width="359" height="78"/>
+                                                        <rect key="frame" x="8" y="5" width="398" height="86"/>
                                                         <subviews>
                                                             <imageView tag="121" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PeySofitDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-Rq-0ih">
-                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -205,7 +204,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="120" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PeyDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="R02-m4-UGp">
-                                                                <rect key="frame" x="51.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="56.999999999999993" y="0.0" width="55.333333333333321" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -213,7 +212,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="119" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AyinDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="Ac5-U5-1qJ">
-                                                                <rect key="frame" x="103" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="114.33333333333334" y="0.0" width="55.000000000000028" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -221,7 +220,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="118" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SamechDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="24U-NK-eC7">
-                                                                <rect key="frame" x="154.5" y="0.0" width="50" height="78"/>
+                                                                <rect key="frame" x="171.33333333333334" y="0.0" width="55.333333333333314" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -229,7 +228,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="117" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NunSofitDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="rnn-KX-WfA">
-                                                                <rect key="frame" x="206.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="228.66666666666669" y="0.0" width="55.000000000000057" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -237,7 +236,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="116" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NunDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="oYk-5D-MMQ">
-                                                                <rect key="frame" x="258" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="285.66666666666674" y="0.0" width="55.333333333333314" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -245,7 +244,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="115" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MemSofitDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="RX7-JD-qJX">
-                                                                <rect key="frame" x="309.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="343" y="0.0" width="55" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -264,13 +263,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-72-lG1">
-                                                <rect key="frame" x="0.0" y="247.5" width="375" height="82.5"/>
+                                                <rect key="frame" x="0.0" y="273.33333333333331" width="414" height="91"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wdQ-HR-llu">
-                                                        <rect key="frame" x="8" y="5" width="359" height="78"/>
+                                                        <rect key="frame" x="8" y="5" width="398" height="86"/>
                                                         <subviews>
                                                             <imageView tag="128" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TofDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="Knx-8s-os6">
-                                                                <rect key="frame" x="0.0" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -278,7 +277,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="127" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShinDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="LHg-xy-Vh7">
-                                                                <rect key="frame" x="51.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="56.999999999999993" y="0.0" width="55.333333333333321" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -286,7 +285,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="126" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RayshDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="WP1-G2-pmf">
-                                                                <rect key="frame" x="103" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="114.33333333333334" y="0.0" width="55.000000000000028" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -294,7 +293,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="125" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlackBlock" translatesAutoresizingMaskIntoConstraints="NO" id="HOS-su-bSE">
-                                                                <rect key="frame" x="154.5" y="0.0" width="50" height="78"/>
+                                                                <rect key="frame" x="171.33333333333334" y="0.0" width="55.333333333333314" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -302,7 +301,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="124" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KufDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="xQ3-zu-kDu">
-                                                                <rect key="frame" x="206.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="228.66666666666669" y="0.0" width="55.000000000000057" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -310,7 +309,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="123" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TzadikSofitDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="Kkv-Wf-KEz">
-                                                                <rect key="frame" x="258" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="285.66666666666674" y="0.0" width="55.333333333333314" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -318,7 +317,7 @@
                                                                 </connections>
                                                             </imageView>
                                                             <imageView tag="122" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TzadikDarkLetterPng" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-0C-kVP">
-                                                                <rect key="frame" x="309.5" y="0.0" width="49.5" height="78"/>
+                                                                <rect key="frame" x="343" y="0.0" width="55" height="86"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <gestureRecognizers/>
                                                                 <connections>
@@ -347,8 +346,8 @@
                                     <constraint firstItem="Rcb-qK-Uza" firstAttribute="leading" secondItem="sqQ-32-jjc" secondAttribute="leading" id="s2s-ai-alN"/>
                                 </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQB-Jq-jvM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQB-Jq-jvM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="DWm-de-FDX"/>
                                 </constraints>
@@ -368,8 +367,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thM-Pr-dd2">
-                                <rect key="frame" x="0.0" y="200" width="320" height="80"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thM-Pr-dd2">
+                                <rect key="frame" x="0.0" y="283.66666666666669" width="414" height="80"/>
                                 <color key="backgroundColor" red="0.53616882006641309" green="0.79968955584510459" blue="0.83886980560000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="E9F-PX-6ec"/>
@@ -557,67 +556,63 @@
                         <viewControllerLayoutGuide type="bottom" id="rDz-lK-7tc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fde-X5-SdH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-ku-q0x">
-                                <rect key="frame" x="0.0" y="91" width="375" height="68"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i95-PA-5k6">
+                                <rect key="frame" x="0.0" y="69" width="414" height="86"/>
                                 <color key="backgroundColor" red="0.30140519469999999" green="0.98006380859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="V1J-5n-uj3"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dS-0p-TgF">
-                                <rect key="frame" x="16" y="28" width="102" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.94471987079999997" blue="0.27428540899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" red="1" green="0.1905785683" blue="0.1653955687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeButtonPressed:" destination="KIP-f6-9iZ" eventType="touchUpInside" id="kf4-lY-abA"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0R-Yz-Dzf">
-                                <rect key="frame" x="5" y="164" width="365" height="498"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgD-5b-SFk">
+                                <rect key="frame" x="4" y="163" width="406" height="565"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90405077077747986" green="0.90405077077747986" blue="0.90405077077747986" alpha="0.60662974071207432" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="O0R-Yz-Dzf" firstAttribute="leading" secondItem="fde-X5-SdH" secondAttribute="leading" constant="5" id="6DZ-GY-RUZ"/>
-                            <constraint firstItem="TwW-ku-q0x" firstAttribute="leading" secondItem="fde-X5-SdH" secondAttribute="leading" id="7Aa-R1-5fF"/>
-                            <constraint firstItem="O0R-Yz-Dzf" firstAttribute="top" secondItem="fde-X5-SdH" secondAttribute="top" constant="164" id="C01-Xw-6F4"/>
-                            <constraint firstAttribute="trailing" secondItem="TwW-ku-q0x" secondAttribute="trailing" id="MgJ-AM-zQk"/>
-                            <constraint firstItem="O0R-Yz-Dzf" firstAttribute="top" secondItem="TwW-ku-q0x" secondAttribute="bottom" constant="5" id="NyU-FC-UbZ"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="4dS-0p-TgF" secondAttribute="leading" id="PfN-Fn-yk7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4dS-0p-TgF" secondAttribute="trailing" constant="241" id="WZK-BP-Eqt"/>
-                            <constraint firstItem="rDz-lK-7tc" firstAttribute="top" secondItem="O0R-Yz-Dzf" secondAttribute="bottom" constant="5" id="a3a-Q9-dpU"/>
-                            <constraint firstAttribute="trailing" secondItem="O0R-Yz-Dzf" secondAttribute="trailing" constant="5" id="dRl-qn-FKa"/>
-                            <constraint firstItem="4dS-0p-TgF" firstAttribute="top" secondItem="9iz-SO-7Af" secondAttribute="bottom" constant="8" id="kZk-dl-4eY"/>
-                            <constraint firstItem="TwW-ku-q0x" firstAttribute="top" secondItem="4dS-0p-TgF" secondAttribute="bottom" constant="23" id="ncs-ca-KfN"/>
+                            <constraint firstAttribute="trailing" secondItem="i95-PA-5k6" secondAttribute="trailing" id="B7e-j2-YeZ"/>
+                            <constraint firstItem="rDz-lK-7tc" firstAttribute="top" secondItem="HgD-5b-SFk" secondAttribute="bottom" constant="8" id="FHR-Lw-5h0"/>
+                            <constraint firstItem="i95-PA-5k6" firstAttribute="leading" secondItem="fde-X5-SdH" secondAttribute="leading" id="bhG-VU-k2X"/>
+                            <constraint firstItem="HgD-5b-SFk" firstAttribute="top" secondItem="i95-PA-5k6" secondAttribute="bottom" constant="8" id="gZV-QM-Xqe"/>
+                            <constraint firstAttribute="trailing" secondItem="HgD-5b-SFk" secondAttribute="trailing" constant="4" id="nm5-of-fxj"/>
+                            <constraint firstItem="HgD-5b-SFk" firstAttribute="leading" secondItem="fde-X5-SdH" secondAttribute="leading" constant="4" id="w07-H6-WRl"/>
+                            <constraint firstItem="i95-PA-5k6" firstAttribute="top" secondItem="9iz-SO-7Af" secondAttribute="bottom" constant="5" id="yU6-Hv-qnS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="m4R-fW-CLD">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="gmF-Y8-HYy">
+                            <color key="tintColor" red="0.31169457610000001" green="1" blue="0.25205272649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="KIP-f6-9iZ" id="8aa-ww-Dw8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="gameView" destination="TwW-ku-q0x" id="jzw-4J-Hi9"/>
-                        <outlet property="storyTextView" destination="O0R-Yz-Dzf" id="p5T-2g-XfW"/>
+                        <outlet property="gameView" destination="i95-PA-5k6" id="BvI-jn-So0"/>
+                        <outlet property="storyTextView" destination="HgD-5b-SFk" id="yJN-rR-Vbs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BsI-NG-lzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-898.39999999999998" y="-638.2308845577212"/>
+            <point key="canvasLocation" x="8.6956521739130448" y="-638.31521739130437"/>
         </scene>
         <!--All People View Controller-->
         <scene sceneID="6Di-xm-8yd">
             <objects>
                 <tableViewController storyboardIdentifier="AllPeopleViewController" id="Z85-A0-ok3" customClass="AllPeopleViewController" customModule="StackViews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="50" sectionFooterHeight="28" id="Irv-cf-o3c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="50" id="nG4-mF-nh5" customClass="PersonCell" customModule="StackViews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nG4-mF-nh5" id="k9C-e5-DQF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -638,7 +633,7 @@
                     <connections>
                         <outlet property="addPersonButton" destination="h4s-Z7-AUJ" id="ZJe-Yi-Yd0"/>
                         <outlet property="tableView" destination="Irv-cf-o3c" id="IkQ-wF-7Qe"/>
-                        <segue destination="KIP-f6-9iZ" kind="showDetail" identifier="ShowKapitlach" id="js7-SW-IXz"/>
+                        <segue destination="x4A-bC-2Ec" kind="showDetail" identifier="ShowKapitlach" id="js7-SW-IXz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1At-Cg-3A9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,6 +657,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoK-9h-RbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2204" y="-1385"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fne-Ma-vHr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x4A-bC-2Ec" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDq-EX-lbd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KIP-f6-9iZ" kind="relationship" relationship="rootViewController" id="PlC-Cv-RD1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-CC-XuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-898.55072463768124" y="-638.31521739130437"/>
         </scene>
     </scenes>
     <resources>

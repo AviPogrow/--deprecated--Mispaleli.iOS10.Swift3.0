@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+    var person =  Person()
+    
     func customizeAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = [
@@ -25,16 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
 
-
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+   
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
 		insertSampleData()
         customizeAppearance()
 		
-		return true
+		person.registerDefaults()
+        
+        return true
 	}
-
-	func insertSampleData() {
+    
+  
+    
+    
+    func insertSampleData() {
 	
         //create a fetch request of object "Person"
         let fetch =  NSFetchRequest<Person>(entityName: "Person")

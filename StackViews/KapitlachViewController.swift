@@ -12,34 +12,40 @@ import AVFoundation
 class KapitlachViewController: UIViewController, NSFetchedResultsControllerDelegate {
 	
     
-    //A. 1 instance variable to keep track of which letter
-    // and which kapitel we are currently hightlighting and presenting
-    var currentLocalIndex: Int = 0
+    //A.
     
     
-    //B. 3 View instance variables
+    //B. 4 View instance variables
+    
     //1
+    let cancelButton = UIButton()
+    //2
+    
     @IBOutlet weak var gameView: UIView!
     
-    //2
+    //3
+    
     @IBOutlet weak var storyTextView: UIView!
     
-    //3
     var bookTextView: UITextView!
-  
+   
     
     //C. 3 Data Model instance variables
     
     //1. person object to pass into fetch request
     var person:Person!
     
-    //2. managedObject context to pass to the fetchedResultsController
+    //2. instance variable to keep track of which letter
+    // and which kapitel we are currently hightlighting and presenting
+    var currentLocalIndex: Int = 0
+    
+    //3. managedObject context to pass to the fetchedResultsController
     // to interface with core data stack
 	lazy var sharedContext: NSManagedObjectContext = {
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
 	
-	//3. FRC to make fetchRequest/ hold the results/ and update the tableView
+	//4. FRC to make fetchRequest/ hold the results/ and update the tableView
     lazy var fetchedResultsController: NSFetchedResultsController<LetterInName> = {
         
         let fetchRequest = NSFetchRequest<LetterInName>()
@@ -85,29 +91,32 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        
+        
         //1. data model  fetch method
         do {
             try fetchedResultsController.performFetch()
         } catch {}
         
-        
-        //2. Update gameView and textView with newly fetched data
-        updateNameAndTextDisplay()
+        //2.
         
         
         //3. color the gameView
-        colorGameView()
-       
-        
+        colorViews()
         
         //4. add two gesture recognizers to detect swipe
         // right or left
         addGestures()
         
-        //5. add views to the super view
+        
+        //4. add subviews to main view
+        //addViews()
+        
+        //5. setup frames or setup constraints
         
         
-        //6. position the views in the superView
+        //6. Update gameView and textView with newly fetched data
+        updateNameAndTextDisplay()
         
         //7. play sound during scene loading
         audioController.playEffect(SoundPop)
@@ -124,6 +133,69 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     //override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
     //    return .all
    // }
+    
+    //1. MARK: - Add the subviews to mainView
+    /*
+    func addViews() {
+        
+        view.addSubview(gameView)
+        view.addSubview(cancelButton)
+        view.addSubview(storyTextView)
+        view.addSubview(bookTextView)
+        
+    }
+     */
+    /*
+    func setupConstraints(){
+        
+        // 1 since we are setting constraints in code
+        // we need to tell the main view we are using auto layout
+        // we are NOT setting frames
+        bookTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 2
+        bookTextView.leadingAnchor.constraint(
+            equalTo: view.readableContentGuide.leadingAnchor).isActive = true
+        bookTextView.trailingAnchor.constraint(
+            equalTo: view.readableContentGuide.trailingAnchor).isActive = true
+        
+        
+        //the bottom of the bookTextView is anchored to the bottom
+        // of the main view - 20 to give some room on the bottom
+        bookTextView.bottomAnchor.constraint(
+            equalTo: bottomLayoutGuide.topAnchor,
+            constant: -20).isActive = true
+        
+        // 3
+        bookTextView.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier: 0.25).isActive = true
+    
+    
+        // 1
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        // 2
+        cancelButton.topAnchor.constraint(
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        // 3
+        cancelButton.leadingAnchor.constraint(
+            equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        cancelButton.trailingAnchor.constraint(
+            equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        // 4
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.centerXAnchor.constraint(
+            equalTo: view.centerXAnchor).isActive = true
+        gameView.bottomAnchor.constraint(
+            equalTo: bookTextView.topAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    */
+    
     
     
     
@@ -172,7 +244,10 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
     
     //4. Color the views
-    func colorGameView() {
+    func colorViews() {
+        
+       // bookTextView.backgroundColor = UIColor.green
+        
         gameView.layer.borderWidth = 1.35
         gameView.layer.borderColor = UIColor.red.cgColor
         gameView.layer.cornerRadius = 10
@@ -210,7 +285,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     var  marginY = (CGFloat(row) * tileSide)
     var y = marginY + 10
         
-
+////////MARK - Need to persist the current person object to perserve state///
+///// and need to persist currentLocal index so we can highlight correct letter
+    // and load correct kapitel
   //********************** start the for loop ***************************
    for (index, lettr) in person.lettersInName.enumerated() {
             
@@ -233,6 +310,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     tile.superview?.addSubview(explode)
     tile.superview?.sendSubview(toBack: explode)
     
+    
+ //////////////////////////////////////////////////////////////////////////
     if index == currentLocalIndex {
         
         //get a referene to the path to the SampleData.plist
@@ -244,29 +323,34 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //extract the first object from the array
         // which will be a dictionary with key:Values for all Kapitlach
         var textDict  = dataArray.firstObject as! NSDictionary
-                
+        
+ //////////////////////////////////////////////////////////////////////////////
         //get the string for the current kapitel for current letter
         var textStringForKapitel = "\(lettr.kapitelImageString!)"
         
         //Use the string as a key to extract the associated value 
         // use the associated string to set the bookTextView
-        bookTextView = UITextView()
+         bookTextView = UITextView()
         
     
         
-        let bookTextViewHeight = ScreenHeight * 0.95
+       let bookTextViewHeight = ScreenHeight * 1.00
+        
         bookTextView.frame = CGRect(x: 0,
                                     y: ScreenHeight-bookTextViewHeight,
-                                    width: ScreenWidth - 5,
+                                    width: ScreenWidth - 8,
                                     height: bookTextViewHeight)
-        
-       // bookTextView.frame = storyTextView.bounds
+ 
+        //bookTextView.frame = CGRect(origin: .zero, size: storyTextView.bounds.size)
         bookTextView.textAlignment = .center
         bookTextView.makeTextWritingDirectionRightToLeft(self)
         
-        bookTextView.font = UIFont.systemFont(ofSize: 25)
+        bookTextView.font = UIFont.systemFont(ofSize: 26)
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
+        
+        
+        
         bookTextView.text = textDict[textStringForKapitel] as! String
         
         //bookTextView.contentOffset = .init(x: 5.0, y: 2.0)
@@ -276,7 +360,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         
         print("state of bookTextView.text is \(bookTextView.text.description)")
-                
+        
+        
+  ////////////////////////////////////////////////////////////////////////////////
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
                 tile.layer.borderColor = UIColor.red.cgColor

@@ -22,7 +22,14 @@ class CoreDataStackManager {
     
     let Model = "Model"
 	
-	
+    
+    
+
+    
+    
+    
+    
+    
     class func sharedInstance() -> CoreDataStackManager {
         struct Static {
             static let instance = CoreDataStackManager()

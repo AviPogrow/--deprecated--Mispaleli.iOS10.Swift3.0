@@ -62,7 +62,21 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 		performSegue(withIdentifier: "ShowNameEditor", sender: sender)
 	
 	}
-	
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //1. set ourselves as the delegate of the navigationController
+        navigationController?.delegate = self
+        
+        //2. get the value for the key "indexOfSelectedChecklist"
+        //let index = person.indexOfSelectedChecklist
+        
+        //3. if index is NOT -1 then we need to segue
+        //if index != -1 {
+        //    let person = fetchedResultsController.object(at: index)
+         //   performSegue(withIdentifier: "ShowKapitlach", sender: person)
+        //}
+    }
    
 
 	//keep track if view controller is in edit mode the user can't open the nameEditor scene
@@ -138,9 +152,17 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowKapitlach" {
             
-            let kapitlachViewController = segue.destination as! KapitlachViewController
+        let navigationController = segue.destination as! UINavigationController
+        let kapitlachViewController = navigationController.topViewController as!
+                KapitlachViewController
+            
             let indexPath = sender as! IndexPath
-            let person = fetchedResultsController.object(at: indexPath)
+            
+              let person = fetchedResultsController.object(at: indexPath)
+            
+            //4. write the value of the indexPath.row into UserDefaults
+            // so we can segue to it later
+            person.indexOfSelectedChecklist = indexPath.row
             
             kapitlachViewController.person = person
             
@@ -151,7 +173,12 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
         }
     }    
     
-    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        if viewController === self {
+            person.indexOfSelectedChecklist = -1
+        }
+    }
     
     
     
