@@ -51,7 +51,7 @@ class TileView:UIImageView {
 	
 	_ = image.size.width / image.size.height
 	
-	print("values are imageWidth is\(image.size.width) and sideLength is\(sideLength) and scale is\(scale)")
+	//print("values are imageWidth is\(image.size.width) and sideLength is\(sideLength) and scale is\(scale)")
 	
 	self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
     

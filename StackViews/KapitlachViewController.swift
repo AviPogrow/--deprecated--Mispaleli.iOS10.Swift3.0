@@ -35,9 +35,10 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     //1. person object to pass into fetch request
     var person:Person!
     
-    //2. instance variable to keep track of which letter
-    // and which kapitel we are currently hightlighting and presenting
-    var currentLocalIndex: Int = 0
+    
+    
+    
+    
     
     //3. managedObject context to pass to the fetchedResultsController
     // to interface with core data stack
@@ -75,7 +76,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     required init?(coder aDecoder: NSCoder) {
 		
 		audioController = AudioController()
-		audioController.preloadAudioEffects(AudioEffectFiles)
+		//audioController.preloadAudioEffects(AudioEffectFiles)
 		
 		super.init(coder: aDecoder)
 		
@@ -220,14 +221,17 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
        audioController.playEffect(SoundPop)
        if gesture.direction == .right {
-            
-            currentLocalIndex = (currentLocalIndex + 1)
+        
+           person.currentKapitelIndex = (person.currentKapitelIndex + 1)
+        CoreDataStackManager.sharedInstance().saveContext()
+        print("the current state of person is \(person.debugDescription)")
         }
      
         if gesture.direction == .left {
            
-            currentLocalIndex = (currentLocalIndex - 1)
-            
+            person.currentKapitelIndex = (person.currentKapitelIndex - 1)
+            CoreDataStackManager.sharedInstance().saveContext()
+    print("the current state of person is \(person.debugDescription)")
         }
         updateNameAndTextDisplay()
     }
@@ -240,7 +244,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             view.removeFromSuperview()
         }
        
-        drawNameAndLoadText(withPerson: person, atCurrentIndex: currentLocalIndex)
+        drawNameAndLoadText(withPerson: person)
     }
     
     //4. Color the views
@@ -264,7 +268,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     
  
- func drawNameAndLoadText(withPerson person: Person, atCurrentIndex: Int) {
+ func drawNameAndLoadText(withPerson person: Person) {
+    
         
  // the default is to have 15 buttons across the screen
     
@@ -293,7 +298,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             
               let tile = TileView(letter: lettr.hebrewLetterString!, sideLength: tileSide)
  
-            tile.frame = CGRect(
+    
+    
+    tile.frame = CGRect(
                 x: x + (CGFloat(column) * -tileSide),  //22 is the same as tileSide
                 // the first letter is drawn
                 // margin x (-3 points from right edge)
@@ -310,9 +317,12 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     tile.superview?.addSubview(explode)
     tile.superview?.sendSubview(toBack: explode)
     
+   
     
- //////////////////////////////////////////////////////////////////////////
-    if index == currentLocalIndex {
+    let index = Int16(index + 101)
+    
+    if index == person.currentKapitelIndex {
+       
         
         //get a referene to the path to the SampleData.plist
         let path = Bundle.main.path(forResource: "Tehillim119", ofType: "plist")
@@ -320,6 +330,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //pull out the array holding one dictionary
         let dataArray = NSArray(contentsOfFile: path!)!
                 
+       
+        
         //extract the first object from the array
         // which will be a dictionary with key:Values for all Kapitlach
         var textDict  = dataArray.firstObject as! NSDictionary
@@ -328,7 +340,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //get the string for the current kapitel for current letter
         var textStringForKapitel = "\(lettr.kapitelImageString!)"
         
-        //Use the string as a key to extract the associated value 
+        
+        
+        
+        
+        //Use the string as a key to extract the associated value
         // use the associated string to set the bookTextView
          bookTextView = UITextView()
         
@@ -353,25 +369,18 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         bookTextView.text = textDict[textStringForKapitel] as! String
         
-        //bookTextView.contentOffset = .init(x: 5.0, y: 2.0)
-        //bookTextView.scrollRectToVisible(
-        //    CGRect(origin: .zero, size: bookTextView.bounds.size),
-        //    animated: false)
-        
-        
-        print("state of bookTextView.text is \(bookTextView.text.description)")
-        
-        
-  ////////////////////////////////////////////////////////////////////////////////
+    
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
                 tile.layer.borderColor = UIColor.red.cgColor
                 tile.layer.cornerRadius = 3
+        
+        storyTextView.addSubview(bookTextView)
             }
             
             
             gameView.addSubview(tile)
-            storyTextView.addSubview(bookTextView)
+    
             
             column += 1
             if column == columnsPerPage {

@@ -18,6 +18,8 @@ extension Person  {
 	   @NSManaged var personName:String?
        @NSManaged var lettersInName: [LetterInName]
 	   @NSManaged var dateCreated: Date?
+       @NSManaged var currentKapitelIndex: Int16
+    
 
     
 	

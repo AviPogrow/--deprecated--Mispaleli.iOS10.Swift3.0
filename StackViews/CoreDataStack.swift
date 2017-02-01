@@ -22,14 +22,6 @@ class CoreDataStackManager {
     
     let Model = "Model"
 	
-    
-    
-
-    
-    
-    
-    
-    
     class func sharedInstance() -> CoreDataStackManager {
         struct Static {
             static let instance = CoreDataStackManager()
@@ -42,6 +34,7 @@ class CoreDataStackManager {
     lazy var applicationDocumentsDirectory: URL = {
         
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        
         return urls[urls.count-1]
     }()
     
@@ -54,10 +47,15 @@ class CoreDataStackManager {
     
 	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
       
+        
+        
         let coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        
+        print(self.applicationDocumentsDirectory)
         let url = self.applicationDocumentsDirectory.appendingPathComponent("Model")
         
-    
+       
+        
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)

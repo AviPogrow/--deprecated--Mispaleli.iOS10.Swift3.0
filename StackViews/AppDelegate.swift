@@ -14,7 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-    var person =  Person()
+    
+    func registerDefaults() {
+        let dictionary: [String: Any] = ["PersonIndex": -1]
+        
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    var indexOfSelectedChecklist: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "PersonIndex")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "PersonIndex")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    
     
     func customizeAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.black
@@ -31,10 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+       
+        
 		insertSampleData()
         customizeAppearance()
 		
-		person.registerDefaults()
+		registerDefaults()
         
         return true
 	}

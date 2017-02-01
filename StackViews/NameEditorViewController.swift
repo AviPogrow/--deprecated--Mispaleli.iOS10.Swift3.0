@@ -29,7 +29,7 @@ class NameEditorViewController: UIViewController {
 	
     required init?(coder aDecoder: NSCoder) {
 		audioController = AudioController()
-		audioController.preloadAudioEffects(AudioEffectFiles)
+		//audioController.preloadAudioEffects(AudioEffectFiles)
 		
         super.init(coder: aDecoder)
 		//tell UIKit that this view controller uses a custom presentation object
@@ -88,6 +88,7 @@ class NameEditorViewController: UIViewController {
 	
         person = Person(context: sharedContext)
 		person.dateCreated = Date()
+        person.currentKapitelIndex = 101
 		
         CoreDataStackManager.sharedInstance().saveContext()
 		

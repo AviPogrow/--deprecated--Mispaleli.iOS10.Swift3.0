@@ -18,6 +18,10 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 	lazy var sharedContext: NSManagedObjectContext = {
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
+    
+    var appDelegate: AppDelegate = {
+        return AppDelegate()
+    }()
  
     lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         let fetchRequest = NSFetchRequest<Person>()
@@ -48,12 +52,13 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 	}
 	override func viewDidLoad() {
 	  super.viewDidLoad()
-	 
-		navigationItem.leftBarButtonItem = self.editButtonItem
-		
+        
+        navigationItem.leftBarButtonItem = self.editButtonItem
+        
         do {
             try fetchedResultsController.performFetch()
-       		 } catch {}
+        } catch {}
+	 
     }
 	
 
@@ -68,15 +73,23 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
         //1. set ourselves as the delegate of the navigationController
         navigationController?.delegate = self
         
+        /*
         //2. get the value for the key "indexOfSelectedChecklist"
-        //let index = person.indexOfSelectedChecklist
+        let index = appDelegate.indexOfSelectedChecklist
+        print("the value for index is \(index)")
         
+        let indexPath = NSIndexPath(item: index, section: 0)
+        */
+        /*
         //3. if index is NOT -1 then we need to segue
-        //if index != -1 {
-        //    let person = fetchedResultsController.object(at: index)
-         //   performSegue(withIdentifier: "ShowKapitlach", sender: person)
-        //}
-    }
+        if index >= 0 {
+            let person = fetchedResultsController.object(at: indexPath as IndexPath)
+            performSegue(withIdentifier: "ShowKapitlach", sender: person)
+        } else if index == -2 {
+            performSegue(withIdentifier: "ShowNameEditor", sender: self)
+        }
+ */
+ }
    
 
 	//keep track if view controller is in edit mode the user can't open the nameEditor scene
@@ -114,7 +127,8 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 		
 		let CellIdentifier = "PersonCell"
             
-		let person = fetchedResultsController.object(at: indexPath) 
+		let person = fetchedResultsController.object(at: indexPath)
+        print("the indexPath looks like this \(indexPath)")
             
 		let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as! PersonCell
    
@@ -146,7 +160,10 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     override func tableView(_ tableView: UITableView,
 						didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
-      performSegue(withIdentifier: "ShowKapitlach", sender: indexPath)
+        
+        let person = fetchedResultsController.object(at: indexPath)
+        
+        performSegue(withIdentifier: "ShowKapitlach", sender: person)
 	}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -156,19 +173,19 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
         let kapitlachViewController = navigationController.topViewController as!
                 KapitlachViewController
             
-            let indexPath = sender as! IndexPath
+            let person = sender as! Person
             
-              let person = fetchedResultsController.object(at: indexPath)
             
             //4. write the value of the indexPath.row into UserDefaults
             // so we can segue to it later
-            person.indexOfSelectedChecklist = indexPath.row
+            appDelegate.indexOfSelectedChecklist = -1
             
             kapitlachViewController.person = person
             
         } else if segue.identifier == "ShowNameEditor" {
             
-            _ = sender as! UIBarButtonItem
+            appDelegate.indexOfSelectedChecklist = -2
+            
             _ = segue.destination as! NameEditorViewController
         }
     }    
@@ -176,7 +193,7 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
         if viewController === self {
-            person.indexOfSelectedChecklist = -1
+            appDelegate.indexOfSelectedChecklist = -1
         }
     }
     
