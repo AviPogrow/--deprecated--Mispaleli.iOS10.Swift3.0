@@ -273,7 +273,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
  // the default is to have 15 buttons across the screen
     
-    let columnsPerPage = 15
+    let columnsPerPage = 13
     
     //3. current row and column number
     var row = 0
@@ -314,18 +314,22 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             gameView.addSubview(tile)
     
            column = column +  1
+    
+    
+     let viewToExplode = gameView.subviews.last
+     let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
+     tile.superview?.addSubview(explode)
+     tile.superview?.sendSubview(toBack: explode)
+    
+    
+    
     if column == columnsPerPage {
         column = 1; row = row + 1; y = y + 30
     }
     
     
     
-    /*
-    let viewToExplode = gameView.subviews.last
-    let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
-    tile.superview?.addSubview(explode)
-    tile.superview?.sendSubview(toBack: explode)
-    */
+    
    
     
     let index = Int16(index + 101)
@@ -392,115 +396,6 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             }
         }
     
-  /*
-    //1. pass in array of strings
-    func drawLettersInGameView(_ imageStringArray: [String]) {
-        
-        //2. total number of rows and columns
-        _ = 0
-        let columnsPerPage = 15
-        
-        //3. current row and column number
-        var rowNumber = 0
-        var column = 1
-        
-        //4. calculate the width and height of each square tile
-        let tileSide = ceil(ScreenWidth / CGFloat(14.5))
-        
-        let marginX = view.bounds.width - 3
-        let x = marginX
-        
-        let marginY = (CGFloat(rowNumber) * tileSide)
-        var y = marginY + 10
-        
-      */
- //********************** start the for loop ***************************
-        /*
-        for s in imageStringArray {
-            
-            let tile = TileView(letter: s, sideLength: tileSide)
-            
-            tile.frame = CGRect(
-                x: x + (CGFloat(column) * -tileSide),  //22 is the same as tileSide
-                // the first letter is drawn
-                // margin x (-3 points from right edge)
-                // + (0 * -22) so it gets drawn -25 from right edge
-                y: y,
-                
-                width: tileSide, height: tileSide)
-            
-            gameView.addSubview(tile)
-            
-            column = column + 1
-            
-            let viewToExplode = gameView.subviews.last
-            let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
-            tile.superview?.addSubview(explode)
-            tile.superview?.sendSubview(toBack: explode)
-            
-            //16. check if we are at the end of the row
-            if column == columnsPerPage {
-                
-                column = 1;rowNumber = rowNumber + 1; y = y + 30
-            }
-        }
-    }
-  
-    */
-    /*
-    func drawNewNameInCell(_ cell:PersonCell, withPerson person: Person) {
-        
-        // the default is to have 15 buttons across the screen
-        let columnsPerPage = 15
-        
-        //distance from right side of screen
-        let marginX = view.bounds.width - 26
-        
-        //the distance from the top of the cell's view
-        var marginY: CGFloat = 5
-        
-        // first row across is numbered 0 and set as default
-        row = 0
-        
-        // first column going down is numbered 0 and set as default
-        var column = 0
-        
-        // set x to the value of margin x (0-2)
-        let x = marginX
-        
-        */
-       
- //********* Draw Hebrew Letters of Name on TableView Cell************************
-        //********************************************************************************
-        
-    /*
-    for (_, lettr) in person.lettersInName.enumerated() {
-            
-            let imageView = UIImageView()
-            let image = UIImage(named: lettr.hebrewLetterString!)
-            
-            imageView.image = image
-            imageView.frame = CGRect(
-                x: x + (CGFloat(column * -19)),
-                
-                y: marginY,
-                
-                width: 20, height: 20)
-            
-            imageView.contentMode = .scaleAspectFill
-            
-            cell.contentView.addSubview(imageView)
-            
-            column += 1
-            if column == columnsPerPage {
-                column = 0;row = row + 1; marginY = marginY + 30
-                
-            }
-        }
-    }
-    
-    
-    */
     
     
     
