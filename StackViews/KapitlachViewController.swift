@@ -222,20 +222,33 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
        audioController.playEffect(SoundPop)
        if gesture.direction == .right {
         
-           person.currentKapitelIndex = (person.currentKapitelIndex + 1)
-        CoreDataStackManager.sharedInstance().saveContext()
-        print("the current state of person is \(person.debugDescription)")
+        person.currentKapitelIndex = (person.currentKapitelIndex + 1)
+      
+        print("the current state of person is \(person.currentKapitelIndex)")
+        
+        if person.currentKapitelIndex > (100 + person.lettersInName.count) {
+         print("person index is too high")
+        person.currentKapitelIndex = (person.currentKapitelIndex - 1)
+        print("the current state of person is \(person.currentKapitelIndex)")
+        }
+          CoreDataStackManager.sharedInstance().saveContext()
         }
      
         if gesture.direction == .left {
-           
+        
             person.currentKapitelIndex = (person.currentKapitelIndex - 1)
+            
+            print("the current state of person is \(person.currentKapitelIndex)")
+        
+            if person.currentKapitelIndex < 101 {
+            print("person index is too low")
+            person.currentKapitelIndex = (person.currentKapitelIndex + 1)
+                }
             CoreDataStackManager.sharedInstance().saveContext()
-    print("the current state of person is \(person.debugDescription)")
         }
         updateNameAndTextDisplay()
-    }
-    
+        }
+  //  }
     //3. load and reload the gameView with highlighted letter
     // load and reload the textView
     func updateNameAndTextDisplay(){
