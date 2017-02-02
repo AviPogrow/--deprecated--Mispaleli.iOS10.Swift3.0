@@ -11,19 +11,16 @@ import CoreData
 
 public class Person: NSManagedObject {
     
-    /*
-    var imageStringArray =
-        
-        ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
-         "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter",
-         "NunSofitLetter","SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter",
-         "MemLetter","YudLetter","RayshLetter","LamedLetter"]
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
     
-    */
-    /*
-    func addPersonToCoreDataUsingStringArray(_ imageStringArray:[String]) {
+   
+    
+    
+    func addPersonToCoreDataUsingStringArray(person:Person, _ imageStringArray:[String]) {
         
-        var person = Person(context: sharedContext)
+        //var person = Person(context: sharedContext)
         person.dateCreated = Date()
         person.currentKapitelIndex = 101
         
@@ -45,5 +42,5 @@ public class Person: NSManagedObject {
             CoreDataStackManager.sharedInstance().saveContext()
             print("the current state of person is \(person.debugDescription)")
         }
-    } */
+    } 
 }

@@ -14,6 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
+    
     
     func registerDefaults() {
         let dictionary: [String: Any] = ["PersonIndex": -1]
@@ -49,36 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         
         } else {
-            addPersonToCoreDataUsingStringArray(imageStringArray)
-        }
-    }
-    
-    
-    func addPersonToCoreDataUsingStringArray(_ imageStringArray:[String]) {
-        
+            
         var person = Person(context: sharedContext)
-        person.dateCreated = Date()
-        person.currentKapitelIndex = 101
-        
-    
-        CoreDataStackManager.sharedInstance().saveContext()
-            
-        for i in imageStringArray {
-            let newString = i
-            let newKapitelString = i + "Kapitel"
-            
-            print("\(newString) and \(newKapitelString)")
-            
-            var letter = LetterInName(context: sharedContext)
-            letter.hebrewLetterString = "\(newString)"
-            letter.kapitelImageString = "\(newString)" + "Kapitel"
-            
-           letter.person = person
-            
-            CoreDataStackManager.sharedInstance().saveContext()
-        print("the current state of person is \(person.debugDescription)")
+        person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         }
     }
+    
+   
     func customizeAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = [
@@ -86,9 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
    
-    lazy var sharedContext: NSManagedObjectContext = {
-	 return CoreDataStackManager.sharedInstance().managedObjectContext
-	 }()
+    
 
     
    

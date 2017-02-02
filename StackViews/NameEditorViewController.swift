@@ -90,10 +90,9 @@ class NameEditorViewController: UIViewController {
 		person.dateCreated = Date()
         person.currentKapitelIndex = 101
 		
-        CoreDataStackManager.sharedInstance().saveContext()
-		
-        updateCoreDataModelWithNewArrayOfStrings(imageStringArray)
-	
+        person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
+        
+        
         dismissAnimationsStyle = .slide
 	
         let hudView = HudView.hudInView(self.view, animated: true)
@@ -108,25 +107,7 @@ class NameEditorViewController: UIViewController {
         }
     }
 
-    func updateCoreDataModelWithNewArrayOfStrings(_ imageStringArray:[String]) {
-		
-	 var letter:LetterInName!
-	
-	  for i in imageStringArray {
- 		let newString = i
-		let newKapitelString = i + "Kapitel"
-	
-		print("\(newString) and \(newKapitelString)")
-	
-        letter = LetterInName(context: sharedContext)
-		letter.hebrewLetterString = "\(newString)"
-        letter.kapitelImageString = "\(newString)" + "Kapitel"
-        
-        letter.person = self.person
 
-		CoreDataStackManager.sharedInstance().saveContext()
-        }
-     }
 
 	
      func stringForTag(_ kind:Int) -> String {
