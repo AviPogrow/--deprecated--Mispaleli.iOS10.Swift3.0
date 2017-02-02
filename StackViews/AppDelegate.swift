@@ -13,7 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
+	
     
     func registerDefaults() {
         let dictionary: [String: Any] = ["PersonIndex": -1]
@@ -30,7 +30,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.synchronize()
         }
     }
+    var imageStringArray =
+        ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
+         "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter","NunSofitLetter",
+         "SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter","MemLetter","YudLetter",
+         "RayshLetter","LamedLetter"]
     
+    func checkIfWeHaveData() {
+        
+        //create a fetch request of object "Person"
+        let fetch =  NSFetchRequest<Person>(entityName: "Person")
+        
+        let count = try! sharedContext.count(for: fetch)
+        
+        if count > 0 {
+            return
+        
+        } else {
+            addPersonToCoreDataUsingStringArray(imageStringArray)
+        }
+    }
+    
+    
+    func addPersonToCoreDataUsingStringArray(_ imageStringArray:[String]) {
+        
+        var person = Person(context: sharedContext)
+        person.dateCreated = Date()
+        person.currentKapitelIndex = 101
+        
+    
+        CoreDataStackManager.sharedInstance().saveContext()
+            
+        for i in imageStringArray {
+            let newString = i
+            let newKapitelString = i + "Kapitel"
+            
+            print("\(newString) and \(newKapitelString)")
+            
+            var letter = LetterInName(context: sharedContext)
+            letter.hebrewLetterString = "\(newString)"
+            letter.kapitelImageString = "\(newString)" + "Kapitel"
+            
+           
+            
+            letter.person = person
+            
+            CoreDataStackManager.sharedInstance().saveContext()
+        print("the current state of person is \(person.debugDescription)")
+        }
+    }
+    
+    
+    
+    
+    
+    
+ 
     
     
     func customizeAppearance() {
@@ -49,8 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
        
+        checkIfWeHaveData()
+		
         
-		insertSampleData()
         customizeAppearance()
 		
 		registerDefaults()
@@ -58,29 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
 	}
     
-  
-    
-    
-    func insertSampleData() {
-	
-        //create a fetch request of object "Person"
-        let fetch =  NSFetchRequest<Person>(entityName: "Person")
-        
-        let count = try! sharedContext.count(for: fetch)
-        
-        if count > 0 {
-            return
-        }
-        
-        let  person1 = NSEntityDescription.insertNewObject(
-        forEntityName: "Person",
-        into: sharedContext) as! Person
-		
-		person1.personName = "Avraham Pinchus"
-		
-		CoreDataStackManager.sharedInstance().saveContext()
-        }
-    }
+}
+
 
  
 
