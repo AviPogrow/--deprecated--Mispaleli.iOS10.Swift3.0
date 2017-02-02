@@ -200,17 +200,12 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     
     
     
-    var row = 0
+    
     override  func tableView(_ tableView: UITableView,
   		heightForRowAt indexPath: IndexPath) -> CGFloat {
 	
-    switch row  {
-     case (0):
-      return 60
-     case (1):
-		return 60
-     default:
-      return 90
+    
+      return 86.0
      }
   }
 
@@ -225,28 +220,28 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 	// the default is to have 15 buttons across the screen
 		let columnsPerPage = 15
 	
-	//distance from right side of screen
-		let marginX = view.bounds.width - 26
+        var row = 0
+        var column = 1
+        
+    let tileSide = ceil(ScreenWidth / CGFloat(14.5))
+    
+        //distance from right side of screen
+		let marginX = cell.contentView.bounds.width - 3
+        
+        // set x to the value of margin x (0-2)
+        let x = marginX
 	
     //the distance from the top of the cell's view
-		var marginY: CGFloat = 5
+		//var marginY: CGFloat = 5
+        let marginY = (CGFloat(row) * tileSide)
+        var y = marginY + 10
+   
 	
-    // first row across is numbered 0 and set as default
-		  row = 0
-	
-    // first column going down is numbered 0 and set as default
-		var column = 0
-	
-    // set x to the value of margin x (0-2)
-		let x = marginX
-	
+        for (_, lettr) in person.lettersInName.enumerated() {
 		
-    //********* Draw Hebrew Letters of Name on TableView Cell************************
-    //********************************************************************************
 		
-		for (_, lettr) in person.lettersInName.enumerated() {
-		
-		let imageView = UIImageView()
+        /*
+        let imageView = UIImageView()
 		let image = UIImage(named: lettr.hebrewLetterString!)
 		
 		imageView.image = image
@@ -258,17 +253,26 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 		width: 20, height: 20)
 		
 		imageView.contentMode = .scaleAspectFill
+		*/
+            let tile = TileView(letter: lettr.hebrewLetterString!, sideLength: tileSide)
+            
+            tile.frame = CGRect(
+                x: x + (CGFloat(column) * -tileSide),
+                y: y,
+                width: tileSide, height: tileSide)
+            
+        //cell.contentView.addSubview(imageView)
+            
+            cell.contentView.addSubview(tile)
 		
-		cell.contentView.addSubview(imageView)
-		
-		column += 1
+		column = column +  1
 		if column == columnsPerPage {
-		column = 0;row = row + 1; marginY = marginY + 30
+		column = 0;row = row + 1; y = y + 30
 
 			}
 		}
 	}
-}
+
 
 //denit ????????????????????????????????????????????????
 //fetchedResultsController.delegate = nil??????????????????????????

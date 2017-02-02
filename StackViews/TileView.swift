@@ -17,16 +17,9 @@
 import Foundation
 import UIKit
 
-
 class TileView:UIImageView {
 
-  
-  fileprivate var xOffset: CGFloat = 0.0
-  fileprivate var yOffset: CGFloat = 0.0
-  
-  
-  
-  fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
+fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
   
   // this should never be called
   required init?(coder aDecoder:NSCoder) {
@@ -36,22 +29,12 @@ class TileView:UIImageView {
   // create a new tile for a given letter
   init(letter:String, sideLength:CGFloat) {
     
-    
     //the tile background
     let image = UIImage(named: letter)!
     
-    //superclass initializer
-    //references to superview's "self" must take place after super.init
-    super.init(image:image)
+        super.init(image:image)
     
-	let scale = sideLength / image.size.width
-	
-	_ = image.size.height / image.size.width
-
-	
-	_ = image.size.width / image.size.height
-	
-	//print("values are imageWidth is\(image.size.width) and sideLength is\(sideLength) and scale is\(scale)")
+        let scale = sideLength / image.size.width
 	
 	self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
     
@@ -68,7 +51,6 @@ class TileView:UIImageView {
     self.userInteractionEnabled = true
     
     */
-	
 	self.layer.borderWidth = 1.2
 	self.layer.borderColor = UIColor.gray.cgColor
 	
@@ -81,8 +63,8 @@ class TileView:UIImageView {
     
     let path = UIBezierPath(rect: self.bounds)
     self.layer.shadowPath = path.cgPath
+    
     }
-
 }
   
  

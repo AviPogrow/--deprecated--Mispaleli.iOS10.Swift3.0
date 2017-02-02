@@ -185,8 +185,7 @@ class NameEditorViewController: UIViewController {
     //1. pass in array of strings
 	func drawLettersInGameView(_ imageStringArray: [String]) {
 	 
-        //2. total number of rows and columns
-		_ = 0
+        
 		let columnsPerPage = 15
 			
 		//3. current row and column number
@@ -209,10 +208,7 @@ class NameEditorViewController: UIViewController {
 		let tile = TileView(letter: s, sideLength: tileSide)
 		
 		tile.frame = CGRect(
-		x: x + (CGFloat(column) * -tileSide),  //22 is the same as tileSide
-										 // the first letter is drawn
-										// margin x (-3 points from right edge)
-										// + (0 * -22) so it gets drawn -25 from right edge
+		x: x + (CGFloat(column) * -tileSide),
 		y: y,
 		
 		width: tileSide, height: tileSide)
@@ -226,7 +222,7 @@ class NameEditorViewController: UIViewController {
    		 tile.superview?.addSubview(explode)
 		tile.superview?.sendSubview(toBack: explode)
 
-		//16. check if we are at the end of the row
+		// check if we are at the end of the row
 		if column == columnsPerPage {
 		
         column = 1;rowNumber = rowNumber + 1; y = y + 30
