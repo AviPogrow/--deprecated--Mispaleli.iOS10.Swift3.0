@@ -35,29 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
    
-    func checkIfWeHaveData() {
-        
-        //create a fetch request of object "Person"
-        let fetch =  NSFetchRequest<Person>(entityName: "Person")
-        
-        let count = try! sharedContext.count(for: fetch)
-        
-        if count > 0 {
-            return
-        
-        } else {
-            
-        var person = Person(context: sharedContext)
-        
-        person.addPersonToCoreDataUsingStringArray(person: person,sampleImageStringArray)
-        }
-    }
    
     //MARK - App Delegate lifeCycle Methods
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-       
-        checkIfWeHaveData()
+    var person =  Person()
+    
+    person.checkFindOrCreatePersonData()
 		
         customizeAppearance()
 		
