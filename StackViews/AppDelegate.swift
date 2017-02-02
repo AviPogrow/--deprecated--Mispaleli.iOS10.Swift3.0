@@ -34,14 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.synchronize()
         }
     }
-    
-    var imageStringArray =
-        
-   ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
-    "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter",
-    "NunSofitLetter","SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter",
-    "MemLetter","YudLetter","RayshLetter","LamedLetter"]
-    
+   
     func checkIfWeHaveData() {
         
         //create a fetch request of object "Person"
@@ -56,23 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         var person = Person(context: sharedContext)
         
-        person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
+        person.addPersonToCoreDataUsingStringArray(person: person,sampleImageStringArray)
         }
     }
-    
    
-    func customizeAppearance() {
-        UINavigationBar.appearance().barTintColor = UIColor.black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white]
-        
-    }
-   
-    
-
-    
-   
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    //MARK - App Delegate lifeCycle Methods
+   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
        
         checkIfWeHaveData()
@@ -83,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
 	}
+    
     
 }
 

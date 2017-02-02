@@ -18,11 +18,18 @@ let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeight = UIScreen.main.bounds.size.height
 
 
+func customizeAppearance() {
+    UINavigationBar.appearance().barTintColor = UIColor.black
+    UINavigationBar.appearance().titleTextAttributes = [
+        NSForegroundColorAttributeName: UIColor.white]
+}
+var sampleImageStringArray =
+    
+    ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
+     "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter",
+     "NunSofitLetter","SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter",
+     "MemLetter","YudLetter","RayshLetter","LamedLetter"]
 
-
-	
-	
-			
 
 
 
