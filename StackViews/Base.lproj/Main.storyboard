@@ -583,10 +583,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="m4R-fW-CLD">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="gmF-Y8-HYy">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="FOB-sm-9sz">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="KIP-f6-9iZ" id="OG0-ZK-RWW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="gmF-Y8-HYy">
                             <color key="tintColor" red="0.31169457610000001" green="1" blue="0.25205272649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="closeButtonPressed:" destination="KIP-f6-9iZ" id="8aa-ww-Dw8"/>
+                                <action selector="saveButtonPressed:" destination="KIP-f6-9iZ" id="jHO-Al-G9D"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

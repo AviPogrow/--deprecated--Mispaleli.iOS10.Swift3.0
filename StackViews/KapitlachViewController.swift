@@ -271,11 +271,18 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
 	
     //5. If user taps cancel dismiss VC with sound effect
-	@IBAction func closeButtonPressed(_ sender: AnyObject) {
+	@IBAction func saveButtonPressed(_ sender: AnyObject) {
 		audioController.playEffect(SoundWin)
 		dismiss(animated: true, completion: nil)
     }
 	
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        person.currentKapitelIndex = 101
+        CoreDataStackManager.sharedInstance().saveContext()
+        
+        audioController.playEffect(SoundWin)
+        dismiss(animated: true, completion: nil)
+    }
 	
     
     
