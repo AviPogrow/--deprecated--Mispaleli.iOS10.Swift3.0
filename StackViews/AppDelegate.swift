@@ -30,11 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.synchronize()
         }
     }
+    
     var imageStringArray =
-        ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
-         "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter","NunSofitLetter",
-         "SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter","MemLetter","YudLetter",
-         "RayshLetter","LamedLetter"]
+        
+   ["YudLetter","ChesLetter","YudLetter","AlephLetter","LamedLetter","SpaceLetter",
+    "BeisLetter","NunLetter","TzaddikLetter","YudLetter","VovLetter",
+    "NunSofitLetter","SpaceLetter","BeisLetter","NunSofitLetter","SpaceLetter",
+    "MemLetter","YudLetter","RayshLetter","LamedLetter"]
     
     func checkIfWeHaveData() {
         
@@ -71,23 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             letter.hebrewLetterString = "\(newString)"
             letter.kapitelImageString = "\(newString)" + "Kapitel"
             
-           
-            
-            letter.person = person
+           letter.person = person
             
             CoreDataStackManager.sharedInstance().saveContext()
         print("the current state of person is \(person.debugDescription)")
         }
     }
-    
-    
-    
-    
-    
-    
- 
-    
-    
     func customizeAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = [
@@ -106,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         checkIfWeHaveData()
 		
-        
         customizeAppearance()
 		
 		registerDefaults()
