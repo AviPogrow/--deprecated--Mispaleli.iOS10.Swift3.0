@@ -87,10 +87,7 @@ class NameEditorViewController: UIViewController {
 	@IBAction func donePressed(_ sender: AnyObject) {
 	
         person = Person(context: sharedContext)
-		person.dateCreated = Date()
-        person.currentKapitelIndex = 101
-		
-        person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
+		person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         
         
         dismissAnimationsStyle = .slide

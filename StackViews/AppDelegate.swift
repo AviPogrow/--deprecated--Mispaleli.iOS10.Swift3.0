@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
         var person = Person(context: sharedContext)
+        
         person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         }
     }
