@@ -35,10 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         //save view controller state
         // save current model object state
+   
+        
     }
     func applicationWillTerminate(_ application: UIApplication) {
         //save view controller state
         // save current model object state
+        
     }
     
     

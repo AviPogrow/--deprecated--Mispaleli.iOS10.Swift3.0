@@ -111,6 +111,18 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let dataModel = DataModel()
+        dataModel.indexOfSelectedChecklist = -1
+        print("the state of indexOfChecklist  is \(dataModel.indexOfSelectedChecklist)")
+    }
+    
+    
+    
+    
+    
+    
     func addGestures() {
         
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
@@ -309,10 +321,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
     
     deinit {
-        
-        let dataModel = DataModel()
-        dataModel.indexOfSelectedChecklist = -1
-        print("the state of indexOfChecklist  is \(dataModel.indexOfSelectedChecklist)")
+       
 		print("deinint \(self)")
 	}
 

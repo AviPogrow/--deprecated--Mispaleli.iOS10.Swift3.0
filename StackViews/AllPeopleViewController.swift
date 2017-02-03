@@ -44,8 +44,6 @@ class AllPeopleViewController: UITableViewController,
     
     deinit {
         fetchedResultsController.delegate = nil
-        
-       
         print("deinint \(self)")
         
     }
@@ -67,8 +65,7 @@ class AllPeopleViewController: UITableViewController,
 	 
     }
 	
-
-	@IBAction func addPerson(_ sender: UIBarButtonItem) {
+    @IBAction func addPerson(_ sender: UIBarButtonItem) {
 		
 		performSegue(withIdentifier: "ShowNameEditor", sender: sender)
 	
@@ -82,7 +79,6 @@ class AllPeopleViewController: UITableViewController,
         
         let indexPath = NSIndexPath(item: index, section: 0)
         
-        
         //4. if index is NOT -1 then we need to segue
         if index != -1 {
         let person = fetchedResultsController.object(at: indexPath as IndexPath)
@@ -90,13 +86,8 @@ class AllPeopleViewController: UITableViewController,
        
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        
-    }
-
-	//keep track if view controller is in edit mode the user can't open the nameEditor scene
+   
+    //keep track if view controller is in edit mode the user can't open the nameEditor scene
 	override func setEditing(_ editing: Bool, animated: Bool) {
 		super.setEditing(editing, animated: animated)
 		
@@ -122,8 +113,7 @@ class AllPeopleViewController: UITableViewController,
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = fetchedResultsController.sections![section]
 		
-	
-		return sectionInfo.numberOfObjects
+        return sectionInfo.numberOfObjects
     }
 	
 	override func tableView(_ tableView: UITableView,
@@ -132,29 +122,24 @@ class AllPeopleViewController: UITableViewController,
 		let CellIdentifier = "PersonCell"
             
 		let person = fetchedResultsController.object(at: indexPath)
-        print("the indexPath looks like this \(indexPath)")
-            
-		let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as! PersonCell
+      
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as! PersonCell
    
 		configureCell(cell, withPerson:  person)
 		return cell
     }
 	
-	
 	override func tableView(_ tableView: UITableView, commit
  							editingStyle: UITableViewCellEditingStyle,
 							forRowAt indexPath: IndexPath) {
-		
-	if editingStyle == .delete {
-		
-		
-	  let person = fetchedResultsController.object(at: indexPath) 
+      if editingStyle == .delete {
+      
+      let person = fetchedResultsController.object(at: indexPath)
       sharedContext.delete(person)
       
       do {
         try sharedContext.save()
       } catch {
-		
 		//print("core data error")
 		//fatalCoreDataError(error)
             }
@@ -188,9 +173,6 @@ class AllPeopleViewController: UITableViewController,
             kapitlachViewController.person = person
             
         } else if segue.identifier == "ShowNameEditor" {
-            
-            
-            
             _ = segue.destination as! NameEditorViewController
         }
     }    
