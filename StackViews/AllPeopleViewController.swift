@@ -9,13 +9,17 @@
 import UIKit
 import CoreData
 
-class AllPeopleViewController: UITableViewController, UINavigationControllerDelegate {
+class AllPeopleViewController: UITableViewController,
+                    UINavigationControllerDelegate { //1.Declare conformance
+                                            //NavControllerDelegateProtocol
 	
 	@IBOutlet weak var addPersonButton: UIBarButtonItem!
 	
 	var person:Person!
 	
-	lazy var sharedContext: NSManagedObjectContext = {
+	var dataModel: DataModel!
+    
+    lazy var sharedContext: NSManagedObjectContext = {
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
     
@@ -43,6 +47,7 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     }()
     
     deinit {
+        print("deinint \(self)")
         fetchedResultsController.delegate = nil
     }
     
@@ -70,26 +75,24 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //1. set ourselves as the delegate of the navigationController
+        //4. set ourselves as the delegate of the navigationController
         navigationController?.delegate = self
         
-        /*
-        //2. get the value for the key "indexOfSelectedChecklist"
-        let index = appDelegate.indexOfSelectedChecklist
+        
+        //5. get the value for the key "indexOfSelectedChecklist"
+        //let index = dataModel.indexOfSelectedChecklist
         print("the value for index is \(index)")
         
-        let indexPath = NSIndexPath(item: index, section: 0)
-        */
-        /*
-        //3. if index is NOT -1 then we need to segue
-        if index >= 0 {
-            let person = fetchedResultsController.object(at: indexPath as IndexPath)
-            performSegue(withIdentifier: "ShowKapitlach", sender: person)
-        } else if index == -2 {
-            performSegue(withIdentifier: "ShowNameEditor", sender: self)
-        }
- */
- }
+        //let indexPath = NSIndexPath(item: index, section: 0)
+        
+        
+        //6. if index is NOT -1 then we need to segue
+        //if index != -1 {
+        //let person = fetchedResultsController.object(at: indexPath as IndexPath)
+       //     performSegue(withIdentifier: "ShowKapitlach", sender: person)
+       
+       // }
+    }
    
 
 	//keep track if view controller is in edit mode the user can't open the nameEditor scene
@@ -161,6 +164,10 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 						didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
         
+        //2. write the value of the indexPath.row into UserDefaults
+        // so we can segue to it later
+       // dataModel.indexOfSelectedChecklist = indexPath.row
+        
         let person = fetchedResultsController.object(at: indexPath)
         
         performSegue(withIdentifier: "ShowKapitlach", sender: person)
@@ -175,33 +182,25 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
             
             let person = sender as! Person
             
-            
-            //4. write the value of the indexPath.row into UserDefaults
-            // so we can segue to it later
-            appDelegate.indexOfSelectedChecklist = -1
-            
             kapitlachViewController.person = person
             
         } else if segue.identifier == "ShowNameEditor" {
             
-            appDelegate.indexOfSelectedChecklist = -2
+            
             
             _ = segue.destination as! NameEditorViewController
         }
     }    
-    
+    //3. If navigation controller pops the KapitelVC then set index
+    // to -1
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
         if viewController === self {
-            appDelegate.indexOfSelectedChecklist = -1
+            dataModel.indexOfSelectedChecklist = -1
         }
     }
     
-    
-    
-    
-    
-    override  func tableView(_ tableView: UITableView,
+   override  func tableView(_ tableView: UITableView,
   		heightForRowAt indexPath: IndexPath) -> CGFloat {
 	
     
@@ -212,18 +211,19 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 	//Helper Method to configure table view cell
 	func configureCell(_ cell:PersonCell, withPerson person: Person) {
 	
+       
         drawNewNameInCell(cell, withPerson: person)
 	}
 
 	func drawNewNameInCell(_ cell:PersonCell, withPerson person: Person) {
 
 	// the default is to have 15 buttons across the screen
-		let columnsPerPage = 15
+		let columnsPerPage = 13
 	
         var row = 0
         var column = 1
         
-    let tileSide = ceil(ScreenWidth / CGFloat(14.5))
+        let tileSide = ceil(ScreenWidth / CGFloat(14.5))
     
         //distance from right side of screen
 		let marginX = cell.contentView.bounds.width - 3
@@ -231,29 +231,13 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
         // set x to the value of margin x (0-2)
         let x = marginX
 	
-    //the distance from the top of the cell's view
-		//var marginY: CGFloat = 5
+    
         let marginY = (CGFloat(row) * tileSide)
         var y = marginY + 10
    
 	
         for (_, lettr) in person.lettersInName.enumerated() {
 		
-		
-        /*
-        let imageView = UIImageView()
-		let image = UIImage(named: lettr.hebrewLetterString!)
-		
-		imageView.image = image
-		imageView.frame = CGRect(
-		x: x + (CGFloat(column * -19)),
-		
-		y: marginY,
-		
-		width: 20, height: 20)
-		
-		imageView.contentMode = .scaleAspectFill
-		*/
             let tile = TileView(letter: lettr.hebrewLetterString!, sideLength: tileSide)
             
             tile.frame = CGRect(
@@ -271,11 +255,10 @@ class AllPeopleViewController: UITableViewController, UINavigationControllerDele
 
 			}
 		}
-	}
+}
 
 
-//denit ????????????????????????????????????????????????
-//fetchedResultsController.delegate = nil??????????????????????????
+
 //******* NSFetchedResults Controller Delegate methods ***********************
 	
 extension AllPeopleViewController: NSFetchedResultsControllerDelegate {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F06DFF71E39067A00A2A476 /* LetterInName+properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */; };
 		7F06DFF91E39084100A2A476 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DFF81E39084100A2A476 /* Person.swift */; };
+		7F08D0641E449E7A005FB5BE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D0631E449E7A005FB5BE /* DataModel.swift */; };
 		7FCAF7C21E3B8645000B1DE6 /* Tehillim119.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */; };
 		D50F52621D5C8B8F00C0CF82 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D50F525F1D5C8B8F00C0CF82 /* win.mp3 */; };
 		D50F52631D5C8B8F00C0CF82 /* wrong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D50F52601D5C8B8F00C0CF82 /* wrong.m4a */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LetterInName+properties.swift"; sourceTree = "<group>"; };
 		7F06DFF81E39084100A2A476 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		7F08D0631E449E7A005FB5BE /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tehillim119.plist; path = ../../AllPeopleVC3.0/AllPeopleVC3.0/Tehillim119.plist; sourceTree = "<group>"; };
 		D50F525F1D5C8B8F00C0CF82 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		D50F52601D5C8B8F00C0CF82 /* wrong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.m4a; sourceTree = "<group>"; };
@@ -157,12 +159,9 @@
 		D50F52671D5C914100C0CF82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D50F52691D5C924E00C0CF82 /* CoreData */,
-				7F06DFF81E39084100A2A476 /* Person.swift */,
-				D5B630F21D52531B00D2FF79 /* Person+properties.swift */,
-				D5B630F41D5253AB00D2FF79 /* LetterInName.swift */,
-				7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */,
+				7F08D0631E449E7A005FB5BE /* DataModel.swift */,
 				7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */,
+				D50F52691D5C924E00C0CF82 /* CoreData */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -183,6 +182,10 @@
 			children = (
 				D5B630F01D52524000D2FF79 /* CoreDataStack.swift */,
 				D5B630F61D52544400D2FF79 /* Model.xcdatamodeld */,
+				7F06DFF81E39084100A2A476 /* Person.swift */,
+				D5B630F21D52531B00D2FF79 /* Person+properties.swift */,
+				D5B630F41D5253AB00D2FF79 /* LetterInName.swift */,
+				7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				D52562491D148FEB0021DE4D /* AppDelegate.swift in Sources */,
 				D5C17FD61D4E4BF9006B3014 /* KapitlachViewController.swift in Sources */,
 				D5D9C2CE1D48CA20009525CD /* Globals.swift in Sources */,
+				7F08D0641E449E7A005FB5BE /* DataModel.swift in Sources */,
 				D52C1D981D2E8FBC001E2D75 /* UIImage+Resize.swift in Sources */,
 				D5449D431D6684B9004BA1C8 /* KapitelCell.swift in Sources */,
 				D5B630F31D52531B00D2FF79 /* Person+properties.swift in Sources */,

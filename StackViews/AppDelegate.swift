@@ -14,41 +14,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
+    let dataModel = DataModel()
+     //var person =  Person()
+    
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
     
-    
-    func registerDefaults() {
-        let dictionary: [String: Any] = ["PersonIndex": -1]
-        
-        UserDefaults.standard.register(defaults: dictionary)
-    }
-    
-    var indexOfSelectedChecklist: Int {
-        get {
-            return UserDefaults.standard.integer(forKey: "PersonIndex")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "PersonIndex")
-            UserDefaults.standard.synchronize()
-        }
-    }
-   
-   
     //MARK - App Delegate lifeCycle Methods
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-    var person =  Person()
+    let navigationController = window!.rootViewController as! UINavigationController
+    let controller = navigationController.viewControllers[0] as! AllPeopleViewController
+    controller.dataModel = dataModel
     
-    person.checkFindOrCreatePersonData()
+    //person.checkFindOrCreatePersonData()
 		
         customizeAppearance()
 		
-		registerDefaults()
-        
-        return true
+		return true
 	}
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        //save state
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        //save state
+    }
     
     
 }
