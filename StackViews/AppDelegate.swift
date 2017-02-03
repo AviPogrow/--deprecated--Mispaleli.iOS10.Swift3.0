@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	
     let dataModel = DataModel()
-     //var person =  Person()
+    
     
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext
@@ -28,17 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let controller = navigationController.viewControllers[0] as! AllPeopleViewController
     controller.dataModel = dataModel
     
-    //person.checkFindOrCreatePersonData()
-		
-        customizeAppearance()
+    customizeAppearance()
 		
 		return true
 	}
     func applicationDidEnterBackground(_ application: UIApplication) {
-        //save state
+        //save view controller state
+        // save current model object state
     }
     func applicationWillTerminate(_ application: UIApplication) {
-        //save state
+        //save view controller state
+        // save current model object state
     }
     
     

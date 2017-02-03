@@ -11,7 +11,7 @@ import Foundation
 class DataModel {
    
     init() {
-       var person =  Person()  
+       let person = Person()
        person.checkFindOrCreatePersonData()
         
        registerDefaults()

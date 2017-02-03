@@ -76,65 +76,20 @@ func drawLettersInGameView(_ imageStringArray: [String]) {
         }
     }
 }
-*/
 
-/*
-func drawNameAndLoadText(withPerson person: Person) {
-    
-    // the default is to have 15 buttons across the screen
-    let columnsPerPage = 13
-    
-    //3. current row and column number
-    var row = 0
-    var column = 1
-    
-    //4. calculate the width and height of each square tile
-    let tileSide = ceil(ScreenWidth / CGFloat(14.5))
-    
-    //5.
-    var  marginX = view.bounds.width - 3
-    let x = marginX
-    
-    var  marginY = (CGFloat(row) * tileSide)
-    var y = marginY + 10
-    
-    
-    //6.
-    //********************** start the for loop ***************************
-    //for (index, lettr) in person.lettersInName.enumerated() {
-        
-        let tile = TileView(letter: lettr.hebrewLetterString!, sideLength: tileSide)
-        
-        tile.frame = CGRect(
-            x: x + (CGFloat(column) * -tileSide),
-            y: y,
-            width: tileSide, height: tileSide)
-        
-        gameView.addSubview(tile)
-        column = column +  1
-        
-        let viewToExplode = gameView.subviews.last
-        let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
-        tile.superview?.addSubview(explode)
-        tile.superview?.sendSubview(toBack: explode)
-        
-        if column == columnsPerPage {
-            column = 1; row = row + 1; y = y + 30
-}
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- */
 */
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
