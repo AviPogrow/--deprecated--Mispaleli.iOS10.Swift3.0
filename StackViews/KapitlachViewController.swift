@@ -186,6 +186,10 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	
     @IBAction func doneButtonPressed(_ sender: Any) {
         person.currentKapitelIndex = 101
+        
+      
+        
+        
         CoreDataStackManager.sharedInstance().saveContext()
         
         audioController.playEffect(SoundWin)
@@ -305,6 +309,10 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
     
     deinit {
+        
+        let dataModel = DataModel()
+        dataModel.indexOfSelectedChecklist = -1
+        print("the state of indexOfChecklist  is \(dataModel.indexOfSelectedChecklist)")
 		print("deinint \(self)")
 	}
 

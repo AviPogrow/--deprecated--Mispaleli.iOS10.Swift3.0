@@ -23,11 +23,7 @@ class AllPeopleViewController: UITableViewController,
 	 return CoreDataStackManager.sharedInstance().managedObjectContext
 	 }()
     
-    var appDelegate: AppDelegate = {
-        return AppDelegate()
-    }()
- 
-    lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
+  lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         let fetchRequest = NSFetchRequest<Person>()
         
         let entity = Person.entity()
@@ -47,8 +43,11 @@ class AllPeopleViewController: UITableViewController,
     }()
     
     deinit {
-        print("deinint \(self)")
         fetchedResultsController.delegate = nil
+        
+       
+        print("deinint \(self)")
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +57,8 @@ class AllPeopleViewController: UITableViewController,
 	override func viewDidLoad() {
 	  super.viewDidLoad()
         
+        //2. set ourselves as the delegate of the navigationController
+        navigationController?.delegate = self
         navigationItem.leftBarButtonItem = self.editButtonItem
         
         do {
@@ -75,25 +76,25 @@ class AllPeopleViewController: UITableViewController,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //4. set ourselves as the delegate of the navigationController
-        navigationController?.delegate = self
-        
-        
-        //5. get the value for the key "indexOfSelectedChecklist"
-        //let index = dataModel.indexOfSelectedChecklist
+        //3. get the value for the key "indexOfSelectedChecklist"
+        let index = dataModel.indexOfSelectedChecklist
         print("the value for index is \(index)")
         
-        //let indexPath = NSIndexPath(item: index, section: 0)
+        let indexPath = NSIndexPath(item: index, section: 0)
         
         
-        //6. if index is NOT -1 then we need to segue
-        //if index != -1 {
-        //let person = fetchedResultsController.object(at: indexPath as IndexPath)
-       //     performSegue(withIdentifier: "ShowKapitlach", sender: person)
+        //4. if index is NOT -1 then we need to segue
+        if index != -1 {
+        let person = fetchedResultsController.object(at: indexPath as IndexPath)
+            performSegue(withIdentifier: "ShowKapitlach", sender: person)
        
-       // }
+        }
     }
-   
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+    }
 
 	//keep track if view controller is in edit mode the user can't open the nameEditor scene
 	override func setEditing(_ editing: Bool, animated: Bool) {
@@ -164,9 +165,11 @@ class AllPeopleViewController: UITableViewController,
 						didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
         
-        //2. write the value of the indexPath.row into UserDefaults
+        //5. write the value of the indexPath.row into UserDefaults
         // so we can segue to it later
-       // dataModel.indexOfSelectedChecklist = indexPath.row
+        dataModel.indexOfSelectedChecklist = indexPath.row
+        
+        print("the state of dataModel.index is \(dataModel.indexOfSelectedChecklist)")
         
         let person = fetchedResultsController.object(at: indexPath)
         
@@ -191,12 +194,12 @@ class AllPeopleViewController: UITableViewController,
             _ = segue.destination as! NameEditorViewController
         }
     }    
-    //3. If navigation controller pops the KapitelVC then set index
+    //6. If navigation controller pops the KapitelVC then set index
     // to -1
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
         if viewController === self {
-            dataModel.indexOfSelectedChecklist = -1
+           print("popped")
         }
     }
     
