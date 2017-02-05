@@ -37,6 +37,7 @@ fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
         let scale = sideLength / image.size.width
 	
 	self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
+    }
     
 /*
 	//add a letter on top
@@ -51,6 +52,7 @@ fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
     self.userInteractionEnabled = true
     
     */
+    func addLayerEffect() {
 	self.layer.borderWidth = 1.2
 	self.layer.borderColor = UIColor.gray.cgColor
 	
@@ -63,7 +65,6 @@ fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
     
     let path = UIBezierPath(rect: self.bounds)
     self.layer.shadowPath = path.cgPath
-    
     }
 }
   

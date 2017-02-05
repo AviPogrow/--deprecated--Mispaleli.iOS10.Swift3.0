@@ -201,7 +201,7 @@ class NameEditorViewController: UIViewController {
         let marginY = (CGFloat(rowNumber) * tileSide)
 		var y = marginY + 10
 	
-//********************** start the for loop ***************************
+//iterate through the array and position letters from Right to Left
 	
 		for s in imageStringArray {
 		
@@ -213,7 +213,8 @@ class NameEditorViewController: UIViewController {
 		
 		width: tileSide, height: tileSide)
 		
-		gameView.addSubview(tile)
+		tile.addLayerEffect()
+        gameView.addSubview(tile)
 	
 		column = column + 1
 	

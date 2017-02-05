@@ -47,16 +47,12 @@ class CoreDataStackManager {
     
 	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
       
-        
-        
         let coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
         print(self.applicationDocumentsDirectory)
         let url = self.applicationDocumentsDirectory.appendingPathComponent("Model")
         
-       
-        
-        var failureReason = "There was an error creating or loading the application's saved data."
+       var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch {
@@ -74,7 +70,6 @@ class CoreDataStackManager {
         
         return coordinator
     }()
-    
     
     lazy var managedObjectContext: NSManagedObjectContext = {
    

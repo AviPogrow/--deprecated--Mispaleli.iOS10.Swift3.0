@@ -198,10 +198,6 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	
     @IBAction func doneButtonPressed(_ sender: Any) {
         person.currentKapitelIndex = 101
-        
-      
-        
-        
         CoreDataStackManager.sharedInstance().saveContext()
         
         audioController.playEffect(SoundWin)
