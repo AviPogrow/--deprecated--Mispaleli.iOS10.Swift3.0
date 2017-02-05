@@ -232,6 +232,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
                 y: y,
                 width: tileSide, height: tileSide)
             
+            tile.addLayerEffect()
+            
             gameView.addSubview(tile)
             column = column +  1
     
