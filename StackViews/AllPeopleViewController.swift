@@ -229,6 +229,7 @@ class AllPeopleViewController: UITableViewController,
                 y: y,
                 width: tileSide, height: tileSide)
             
+        tile.addLayerEffect()
         cell.contentView.addSubview(tile)
          
 		
