@@ -273,7 +273,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         bookTextView.textAlignment = .center
         bookTextView.makeTextWritingDirectionRightToLeft(self)
         
-        bookTextView.font = UIFont.systemFont(ofSize: 26)
+        bookTextView.font = UIFont.systemFont(ofSize: 23.5)
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
         
