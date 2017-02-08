@@ -118,11 +118,6 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         print("the state of indexOfChecklist  is \(dataModel.indexOfSelectedChecklist)")
     }
     
-    
-    
-    
-    
-    
     func addGestures() {
         
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeChapter(_:)))
@@ -270,7 +265,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         let bookTextViewHeight = ScreenHeight * 1.00
         
         bookTextView.frame = CGRect(x: 0,
-                                    y: ScreenHeight-bookTextViewHeight,
+                                    y: ScreenHeight - bookTextViewHeight,
                                     width: ScreenWidth - 8,
                                     height: bookTextViewHeight)
  
