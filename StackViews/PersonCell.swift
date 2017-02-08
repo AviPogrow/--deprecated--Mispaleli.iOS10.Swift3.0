@@ -10,7 +10,7 @@ import UIKit
 
 class PersonCell: UITableViewCell {
 
-    @IBOutlet weak var gameView: UIView!
+  
 	
     override func awakeFromNib() {
     super.awakeFromNib()

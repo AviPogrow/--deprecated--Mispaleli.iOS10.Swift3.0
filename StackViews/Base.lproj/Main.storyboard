@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -620,23 +619,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nG4-mF-nh5" id="k9C-e5-DQF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fve-Yv-BPw">
-                                            <rect key="frame" x="8" y="8" width="398" height="33"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="fve-Yv-BPw" firstAttribute="bottom" secondItem="k9C-e5-DQF" secondAttribute="bottomMargin" id="IUC-t7-YR5"/>
-                                        <constraint firstItem="fve-Yv-BPw" firstAttribute="leading" secondItem="k9C-e5-DQF" secondAttribute="leadingMargin" id="dHw-Up-Tfi"/>
-                                        <constraint firstItem="fve-Yv-BPw" firstAttribute="top" secondItem="k9C-e5-DQF" secondAttribute="topMargin" id="g0d-Ik-Tmo"/>
-                                        <constraint firstItem="fve-Yv-BPw" firstAttribute="trailing" secondItem="k9C-e5-DQF" secondAttribute="trailingMargin" id="gQ0-UI-eTY"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.30140519469999999" green="0.98006380859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="gameView" destination="fve-Yv-BPw" id="cQs-4Y-kbm"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
