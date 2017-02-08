@@ -212,8 +212,9 @@ class AllPeopleViewController: UITableViewController,
     
         //distance from right side of screen
 		//let marginX = cell.contentView.bounds.width - 3
-        let marginX = ScreenWidth - 3
         
+        //let marginX = cell.gameView.bounds.width - 3
+        let marginX = ScreenWidth - 3
         // set x to the value of margin x (0-2)
         let x = marginX
 	
@@ -231,9 +232,9 @@ class AllPeopleViewController: UITableViewController,
                 y: y,
                 width: tileSide, height: tileSide)
             
-        //cell.contentView.addSubview(imageView)
-            
         cell.contentView.addSubview(tile)
+         //cell.gameView.addSubview(tile)
+        //cell.game.addSubview(tile)
 		
 		column = column +  1
 		if column == columnsPerPage {

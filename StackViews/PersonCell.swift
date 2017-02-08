@@ -10,7 +10,9 @@ import UIKit
 
 class PersonCell: UITableViewCell {
 
-	override func awakeFromNib() {
+    @IBOutlet weak var gameView: UIView!
+	
+    override func awakeFromNib() {
     super.awakeFromNib()
 	
 	//self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2.0
