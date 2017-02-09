@@ -7,10 +7,16 @@
 //
 import UIKit
 import CoreData
+
+//1. import AVFoundation
 import AVFoundation
 
 class KapitlachViewController: UIViewController, NSFetchedResultsControllerDelegate {
-	//A.
+	
+    //2. store audio player as a property
+    var dingSoundEffect: AVAudioPlayer!
+    
+    //A.
     //B. 4 View instance variables
     //1
     let cancelButton = UIButton()
@@ -173,7 +179,19 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         for view in gameView.subviews {
             view.removeFromSuperview()
         }
+        //3. find sound file using path(forResourse:)
+        let path = Bundle.main.path(forResource: "ding.mp3", ofType: nil)!
+        //4. create a file url
+        let url = URL(fileURLWithPath: path)
         
+        do {
+            let sound = try AVAudioPlayer(contentsOf: url)
+            dingSoundEffect = sound
+            sound.play()
+            
+        } catch {
+            print("couldn't load file")
+        }
         drawNameAndLoadText(withPerson: person)
     }
     

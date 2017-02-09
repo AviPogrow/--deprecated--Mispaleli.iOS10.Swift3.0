@@ -8,11 +8,15 @@
 
 import UIKit
 import CoreData
+
+//1 import AVFoundation
 import AVFoundation
 
 class NameEditorViewController: UIViewController {
 	
-	fileprivate  var audioController: AudioController
+	//fileprivate  var audioController: AudioController
+    //2. store audioPlayer as a property
+    var dingSoundEffect: AVAudioPlayer!
 	
 	var person:Person!
 	
@@ -28,7 +32,7 @@ class NameEditorViewController: UIViewController {
 	
 	
     required init?(coder aDecoder: NSCoder) {
-		audioController = AudioController()
+		//audioController = AudioController()
 		//audioController.preloadAudioEffects(AudioEffectFiles)
 		
         super.init(coder: aDecoder)
@@ -72,7 +76,7 @@ class NameEditorViewController: UIViewController {
 		gameView.layer.borderColor = UIColor.red.cgColor
 		gameView.layer.cornerRadius = 10
 	
-		audioController.playEffect(SoundPop)
+		//audioController.playEffect(SoundPop)
 	
 	 if imageStringArray.isEmpty {
 		 
@@ -95,7 +99,7 @@ class NameEditorViewController: UIViewController {
         let hudView = HudView.hudInView(self.view, animated: true)
 		
 		hudView.text = "Saved"
-		audioController.playEffect(SoundWin)
+		//audioController.playEffect(SoundWin)
 	
 		afterDelay(1.3) {
 		
@@ -172,7 +176,7 @@ class NameEditorViewController: UIViewController {
 	
 		updateTheHudWithStringArray(imageStringArray)
 	
-		audioController.playEffect(SoundDing)
+		
 	}
 	
 	func updateTheHudWithStringArray(_ imageStringArray: [String]) {
@@ -185,8 +189,23 @@ class NameEditorViewController: UIViewController {
     //1. pass in array of strings
 	func drawLettersInGameView(_ imageStringArray: [String]) {
 	 
+        //audioController.playEffect(SoundDing)
         
-		let columnsPerPage = 15
+        //3. find sound file using path(forResourse:)
+        let path = Bundle.main.path(forResource: "ding.mp3", ofType: nil)!
+        //4. create a file url
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOf: url)
+            dingSoundEffect = sound
+            sound.play()
+            
+        } catch {
+            print("couldn't load file")
+        }
+        
+        let columnsPerPage = 15
 			
 		//3. current row and column number
 		var rowNumber = 0
@@ -255,14 +274,14 @@ class NameEditorViewController: UIViewController {
 	
 		updateTheHudWithStringArray(imageStringArray)
 	
-		audioController.playEffect(SoundPop)
+		//audioController.playEffect(SoundPop)
 	
 		}
 	
     @IBAction func cancelPressed(_ sender: AnyObject) {
 		dismissAnimationsStyle = .fade
 		dismiss(animated: true, completion: nil)
-		audioController.playEffect(SoundWin)
+		//audioController.playEffect(SoundWin)
 		}
 	
     enum AnimationStyle {
