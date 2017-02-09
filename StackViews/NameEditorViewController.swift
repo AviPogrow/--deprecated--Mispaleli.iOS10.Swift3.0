@@ -192,7 +192,7 @@ class NameEditorViewController: UIViewController {
         //audioController.playEffect(SoundDing)
         
         //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "ding.mp3", ofType: nil)!
+        let path = Bundle.main.path(forResource: "button_press.wav", ofType: nil)!
         //4. create a file url
         let url = URL(fileURLWithPath: path)
         

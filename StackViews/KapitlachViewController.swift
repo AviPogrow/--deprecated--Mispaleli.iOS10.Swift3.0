@@ -86,6 +86,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+     
+        
         //1. data model  fetch method
         do {
             try fetchedResultsController.performFetch()
@@ -107,7 +109,20 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         updateNameAndTextDisplay()
         
         //7. play sound during scene loading
-        audioController.playEffect(SoundPop)
+        //3. find sound file using path(forResourse:)
+        let path = Bundle.main.path(forResource: "button_press.wav", ofType: nil)!
+        //4. create a file url
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOf: url)
+            dingSoundEffect = sound
+            sound.play()
+            
+        } catch {
+            print("couldn't load file")
+        }
+        //audioController.playEffect(SoundPop)
     }
     
     // 3. ViewDidLayoutSubviews
@@ -179,19 +194,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         for view in gameView.subviews {
             view.removeFromSuperview()
         }
-        //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "ding.mp3", ofType: nil)!
-        //4. create a file url
-        let url = URL(fileURLWithPath: path)
         
-        do {
-            let sound = try AVAudioPlayer(contentsOf: url)
-            dingSoundEffect = sound
-            sound.play()
-            
-        } catch {
-            print("couldn't load file")
-        }
         drawNameAndLoadText(withPerson: person)
     }
     
@@ -291,7 +294,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         bookTextView.textAlignment = .center
         bookTextView.makeTextWritingDirectionRightToLeft(self)
         
-        bookTextView.font = UIFont.systemFont(ofSize: 23.5)
+       
+        bookTextView.font = UIFont.systemFont(ofSize: 26.5)
+        
+        
+        
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
         
