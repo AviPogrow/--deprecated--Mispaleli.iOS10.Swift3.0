@@ -307,9 +307,7 @@ extension NameEditorViewController: UIViewControllerTransitioningDelegate {
 						presenting: presenting)
 		}
 	
-	
-	
-		func animationController(forPresented presented: UIViewController,
+	func animationController(forPresented presented: UIViewController,
 	 	 presenting: UIViewController,
 	 	 source: UIViewController)
 	 		 -> UIViewControllerAnimatedTransitioning? {
