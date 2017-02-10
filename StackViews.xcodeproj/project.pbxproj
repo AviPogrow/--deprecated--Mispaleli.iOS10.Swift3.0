@@ -169,8 +169,8 @@
 		D50F52681D5C91B900C0CF82 /* ViewControllerAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				D5C0BAF91D4AA76F0059A6A6 /* FadeOutAnimationController.swift */,
 				D56DB28A1D46A5D800D2F922 /* DimmingPresentationController.swift */,
+				D5C0BAF91D4AA76F0059A6A6 /* FadeOutAnimationController.swift */,
 				D51FC6BC1D47979300CB6820 /* SlideOutAnimationController.swift */,
 				D51FC6BE1D48055600CB6820 /* BounceAnimationController.swift */,
 			);
@@ -464,6 +464,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -482,6 +483,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

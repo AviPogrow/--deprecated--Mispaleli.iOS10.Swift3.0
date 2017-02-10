@@ -10,40 +10,37 @@ import UIKit
 
 class DimmingPresentationController: UIPresentationController {
 	
-  //leave the first view controller visible
-  override var shouldRemovePresentersView : Bool {
+    //1. keep the view of the presenting view controller visible
+    override var shouldRemovePresentersView : Bool {
     return false
   }
+    //2. create instance of GradientView and call it dimmingView
+    lazy var dimmingView = GradientView(frame: CGRect.zero)
   
-  lazy var dimmingView = GradientView(frame: CGRect.zero)
-  
 	
-	//Delegate Method that gets called when new view is being presented by presentation controller
-	// in this casew we...
-  //fade in the gradient view over time
-	
-  override func presentationTransitionWillBegin() {
+	override func presentationTransitionWillBegin() {
 	
 	
-	//"containerView" is a new view that is placed on top of the AllPeopleVC and it contains the
+	//3."containerView" is a new view that is placed on top of the AllPeopleVC and it contains the
 	//views of the new view controller
 	//set the size of  the graident view to the same as the super view
 	dimmingView.frame = containerView!.bounds
 	
-	//add the gradient view as subview to the container view so that it is the
-	// first view in the hierarchy of the new set of views
-	containerView!.insertSubview(dimmingView, at: 0)
+        //4. add the gradient to the superView and insert it
+        // behind all the other views in the container view
+        containerView!.insertSubview(dimmingView, at: 0)
     
-	//set the gradient view to be completely transparent
-	dimmingView.alpha = 0
+	  //5. set the gradient view to be completely transparent
+	  dimmingView.alpha = 0
 	
 	
-	// 2 things animating at the same time
-	// 1. let the gradient view fade in
-	// 2. at the same time that the new view bounces in
-	
-	if let transitionCoordinator = presentedViewController.transitionCoordinator {
-      transitionCoordinator.animate(alongsideTransition: { _ in
+        //6. get a reference to the transitionCoordinator property of the
+        // new view controller
+	if let coordinator = presentedViewController.transitionCoordinator {
+      
+        //7. tell the coordinator to animate the transparency of the gradient view
+        // along with the other transition animations        
+        coordinator.animate(alongsideTransition: { _ in
 		
 		//animate it to be fully visible
 		self.dimmingView.alpha = 1
@@ -55,8 +52,8 @@ class DimmingPresentationController: UIPresentationController {
 	// in this case the gradient view is being dimmed as the viewController is sliding up and away
 	
 	override func dismissalTransitionWillBegin()  {
-    if let transitionCoordinator = presentedViewController.transitionCoordinator {
-      transitionCoordinator.animate(alongsideTransition: { _ in
+    if let coordinator = presentedViewController.transitionCoordinator {
+      coordinator.animate(alongsideTransition: { _ in
         self.dimmingView.alpha = 0
       }, completion: nil)
     }

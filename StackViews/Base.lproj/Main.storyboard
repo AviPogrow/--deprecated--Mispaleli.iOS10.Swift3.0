@@ -568,7 +568,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgD-5b-SFk">
                                 <rect key="frame" x="4" y="163" width="406" height="565"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.94471987079999997" blue="0.27428540899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90405077077747986" green="0.90405077077747986" blue="0.90405077077747986" alpha="0.60662974071207432" colorSpace="custom" customColorSpace="sRGB"/>
@@ -602,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BsI-NG-lzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8.6956521739130448" y="-638.31521739130437"/>
+            <point key="canvasLocation" x="223.18840579710147" y="-800.54347826086962"/>
         </scene>
         <!--All People View Controller-->
         <scene sceneID="6Di-xm-8yd">
@@ -617,7 +617,7 @@
                                 <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nG4-mF-nh5" id="k9C-e5-DQF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.30140519469999999" green="0.98006380859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -639,7 +639,7 @@
                     <connections>
                         <outlet property="addPersonButton" destination="h4s-Z7-AUJ" id="ZJe-Yi-Yd0"/>
                         <outlet property="tableView" destination="Irv-cf-o3c" id="IkQ-wF-7Qe"/>
-                        <segue destination="x4A-bC-2Ec" kind="showDetail" identifier="ShowKapitlach" id="js7-SW-IXz"/>
+                        <segue destination="tlc-Sy-zQ9" kind="presentation" identifier="ShowKapitlach" modalTransitionStyle="partialCurl" id="XXP-Fq-0OL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1At-Cg-3A9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -665,22 +665,22 @@
             <point key="canvasLocation" x="-2204" y="-1385"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="fne-Ma-vHr">
+        <scene sceneID="QBb-N5-k17">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x4A-bC-2Ec" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tlc-Sy-zQ9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fDq-EX-lbd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Db-yi-bCL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="KIP-f6-9iZ" kind="relationship" relationship="rootViewController" id="PlC-Cv-RD1"/>
+                        <segue destination="KIP-f6-9iZ" kind="relationship" relationship="rootViewController" id="1ZC-Fg-gl6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-CC-XuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ue6-Yq-s28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-898.55072463768124" y="-638.31521739130437"/>
+            <point key="canvasLocation" x="-684.05797101449275" y="-800.54347826086962"/>
         </scene>
     </scenes>
     <resources>

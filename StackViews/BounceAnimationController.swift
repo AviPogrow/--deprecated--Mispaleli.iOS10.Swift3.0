@@ -23,7 +23,8 @@ class BounceAnimationController: NSObject, UIViewControllerAnimatedTransitioning
 		
 		  toView.frame = transitionContext.finalFrame(for: toViewController)
       		containerView.addSubview(toView)
-      		toView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        
+            toView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
 		
 		
 		

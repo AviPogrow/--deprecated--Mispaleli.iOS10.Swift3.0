@@ -62,19 +62,17 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         }()
 	
     //D. 1 instance variable to handle audio effects
-    fileprivate  var audioController: AudioController
+   // fileprivate  var audioController: AudioController
 	
     
     // MARK:- 4 View Controller methods
     //1. required init
     required init?(coder aDecoder: NSCoder) {
-		
-		audioController = AudioController()
+			super.init(coder: aDecoder)
+        //audioController = AudioController()
 		//audioController.preloadAudioEffects(AudioEffectFiles)
 		
-		super.init(coder: aDecoder)
-		
-		// tell UIKit that this VC uses a custom presentation
+	// tell UIKit that this VC uses a custom presentation
 		modalPresentationStyle = .custom
 		
 		//set the delegate that will call the methods for the 
@@ -157,7 +155,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     //2. Change the highlighted letter and displayed text
     func changeChapter(_ gesture:UISwipeGestureRecognizer) {
         
-       audioController.playEffect(SoundPop)
+       //audioController.playEffect(SoundPop)
        if gesture.direction == .right {
         
         person.currentKapitelIndex = (person.currentKapitelIndex + 1)
@@ -208,7 +206,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	
     //5. If user taps cancel dismiss VC with sound effect
 	@IBAction func saveButtonPressed(_ sender: AnyObject) {
-		audioController.playEffect(SoundWin)
+		//audioController.playEffect(SoundWin)
 		dismiss(animated: true, completion: nil)
     }
 	
@@ -216,7 +214,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         person.currentKapitelIndex = 101
         CoreDataStackManager.sharedInstance().saveContext()
         
-        audioController.playEffect(SoundWin)
+        //audioController.playEffect(SoundWin)
         dismiss(animated: true, completion: nil)
     }
 	
@@ -285,15 +283,17 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         bookTextView = UITextView()
         let bookTextViewHeight = ScreenHeight * 1.00
         
-        bookTextView.frame = CGRect(x: 0,
-                                    y: ScreenHeight - bookTextViewHeight,
-                                    width: ScreenWidth - 8,
-                                    height: bookTextViewHeight)
+        bookTextView.frame = CGRect(
+            x: 0,
+            y: ScreenHeight - bookTextViewHeight,
+            width: ScreenWidth - 8,
+            height: bookTextViewHeight)
  
         //bookTextView.frame = CGRect(origin: .zero, size: storyTextView.bounds.size)
         bookTextView.textAlignment = .center
         bookTextView.makeTextWritingDirectionRightToLeft(self)
         
+      
        
         bookTextView.font = UIFont.systemFont(ofSize: 26.5)
         
