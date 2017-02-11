@@ -55,6 +55,7 @@
 		7F06DFF61E39067A00A2A476 /* LetterInName+properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LetterInName+properties.swift"; sourceTree = "<group>"; };
 		7F06DFF81E39084100A2A476 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		7F08D0631E449E7A005FB5BE /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		7FB3EB891E4E8CEE006555B2 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tehillim119.plist; path = ../../AllPeopleVC3.0/AllPeopleVC3.0/Tehillim119.plist; sourceTree = "<group>"; };
 		D50F525F1D5C8B8F00C0CF82 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		D50F52601D5C8B8F00C0CF82 /* wrong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.m4a; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 			children = (
 				D56F45421D576B2B00874A8D /* AudioController.swift */,
 				D5C0BB051D4AC7880059A6A6 /* hitCatLady.wav */,
+				7FB3EB891E4E8CEE006555B2 /* Sound.caf */,
 				D50F525F1D5C8B8F00C0CF82 /* win.mp3 */,
 				D50F52601D5C8B8F00C0CF82 /* wrong.m4a */,
 				D50F52611D5C8B8F00C0CF82 /* ding.mp3 */,

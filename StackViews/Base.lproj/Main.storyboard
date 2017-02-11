@@ -639,7 +639,7 @@
                     <connections>
                         <outlet property="addPersonButton" destination="h4s-Z7-AUJ" id="ZJe-Yi-Yd0"/>
                         <outlet property="tableView" destination="Irv-cf-o3c" id="IkQ-wF-7Qe"/>
-                        <segue destination="tlc-Sy-zQ9" kind="presentation" identifier="ShowKapitlach" modalTransitionStyle="partialCurl" id="XXP-Fq-0OL"/>
+                        <segue destination="tlc-Sy-zQ9" kind="showDetail" identifier="ShowKapitlach" id="XXP-Fq-0OL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1At-Cg-3A9" userLabel="First Responder" sceneMemberID="firstResponder"/>

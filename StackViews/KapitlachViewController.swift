@@ -26,9 +26,10 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     //3
     @IBOutlet weak var storyTextView: UIView!
-    
     var bookTextView: UITextView!
    
+    
+    
     //C. 3 Data Model instance variables
     
     //1. person object to pass into fetch request
@@ -73,11 +74,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 		//audioController.preloadAudioEffects(AudioEffectFiles)
 		
 	// tell UIKit that this VC uses a custom presentation
-		modalPresentationStyle = .custom
+	//	modalPresentationStyle = .custom
 		
 		//set the delegate that will call the methods for the 
 		// custom presentation
-		transitioningDelegate = self
+	//	transitioningDelegate = self
 		
 	}
 	//2. viewDidLoad
@@ -108,7 +109,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         //7. play sound during scene loading
         //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "button_press.wav", ofType: nil)!
+        let path = Bundle.main.path(forResource: "win.mp3", ofType: nil)!
         //4. create a file url
         let url = URL(fileURLWithPath: path)
         
@@ -297,7 +298,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
        
         bookTextView.font = UIFont.systemFont(ofSize: 26.5)
         
-        
+        //bookTextView.sizeToFit()
         
         bookTextView.isSelectable = false
         bookTextView.isEditable = false
@@ -376,14 +377,7 @@ extension KapitlachViewController: UIViewControllerTransitioningDelegate {
 		return SlideOutAnimationController()
     }
 }
-extension KapitlachViewController: UIGestureRecognizerDelegate {
 
-	func  gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-								shouldReceive touch: UITouch) -> Bool {
-        //only return a touch if the touch was on the background view
-		// otherwise return false
-		return (touch.view === self.view)
-	}
-}
+
 
 
