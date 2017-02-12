@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StackViews/KapitlachViewController.swift"
-            timestampString = "508603738.384176"
+            timestampString = "508604982.942241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "drawNameAndLoadText(withPerson:)"
             landmarkType = "7">
          </BreakpointContent>
