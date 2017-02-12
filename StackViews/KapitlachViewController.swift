@@ -283,7 +283,8 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
       
       bookTextView.text = textDict[textStringForKapitel] as! String
-      bookTextView.font = UIFont.systemFont(ofSize: 28.0)
+      bookTextView.font = UIFont.systemFont(ofSize: 38.0)
+      bookTextView.textAlignment = .center
        
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
