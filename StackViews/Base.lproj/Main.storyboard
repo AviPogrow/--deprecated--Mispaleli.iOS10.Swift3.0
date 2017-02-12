@@ -568,7 +568,22 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgD-5b-SFk">
                                 <rect key="frame" x="4" y="163" width="406" height="565"/>
-                                <color key="backgroundColor" red="1" green="0.94471987079999997" blue="0.27428540899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7nW-er-pHu">
+                                        <rect key="frame" x="5" y="5" width="396" height="555"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84559180700000003" green="0.84559180700000003" blue="0.84559180700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7nW-er-pHu" firstAttribute="top" secondItem="HgD-5b-SFk" secondAttribute="top" constant="5" id="26G-bJ-Uzl"/>
+                                    <constraint firstAttribute="bottom" secondItem="7nW-er-pHu" secondAttribute="bottom" constant="5" id="8wv-2p-H5Z"/>
+                                    <constraint firstItem="7nW-er-pHu" firstAttribute="leading" secondItem="HgD-5b-SFk" secondAttribute="leading" constant="5" id="dcv-lJ-DBH"/>
+                                    <constraint firstAttribute="trailing" secondItem="7nW-er-pHu" secondAttribute="trailing" constant="5" id="qel-R0-g6E"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90405077077747986" green="0.90405077077747986" blue="0.90405077077747986" alpha="0.60662974071207432" colorSpace="custom" customColorSpace="sRGB"/>
@@ -596,6 +611,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bookTextView" destination="7nW-er-pHu" id="DjY-ai-LiD"/>
                         <outlet property="gameView" destination="i95-PA-5k6" id="BvI-jn-So0"/>
                         <outlet property="storyTextView" destination="HgD-5b-SFk" id="yJN-rR-Vbs"/>
                     </connections>

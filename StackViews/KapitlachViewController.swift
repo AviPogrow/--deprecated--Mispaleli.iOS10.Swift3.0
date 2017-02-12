@@ -26,7 +26,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     //3
     @IBOutlet weak var storyTextView: UIView!
-    var bookTextView: UITextView!
+  
+   
+    @IBOutlet weak var bookTextView: UILabel!
    
     
     
@@ -279,37 +281,22 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //get the string for the current kapitel for current letter
         var textStringForKapitel = "\(lettr.kapitelImageString!)"
         
-        //Use the string as a key to extract the associated value
-        // use the associated string to set the bookTextView
-        bookTextView = UITextView()
-        let bookTextViewHeight = ScreenHeight * 1.00
+      
+     
+    bookTextView.text = textDict[textStringForKapitel] as! String
         
-        bookTextView.frame = CGRect(
-            x: 0,
-            y: ScreenHeight - bookTextViewHeight,
-            width: ScreenWidth - 8,
-            height: bookTextViewHeight)
- 
-        //bookTextView.frame = CGRect(origin: .zero, size: storyTextView.bounds.size)
-        bookTextView.textAlignment = .center
-        bookTextView.makeTextWritingDirectionRightToLeft(self)
+        //bookTextView.textAlignment = .center
+    
+        bookTextView.font = UIFont.systemFont(ofSize: 28.5)
+       
         
       
-       
-        bookTextView.font = UIFont.systemFont(ofSize: 26.5)
-        
-        //bookTextView.sizeToFit()
-        
-        bookTextView.isSelectable = false
-        bookTextView.isEditable = false
-        
-        bookTextView.text = textDict[textStringForKapitel] as! String
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
                 tile.layer.borderColor = UIColor.red.cgColor
                 tile.layer.cornerRadius = 3
         
-        storyTextView.addSubview(bookTextView)
+      
             }
         }
     }
