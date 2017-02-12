@@ -282,49 +282,18 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         var textStringForKapitel = "\(lettr.kapitelImageString!)"
         
       
-     
-    bookTextView.text = textDict[textStringForKapitel] as! String
-        
-        //bookTextView.textAlignment = .center
-    
-        bookTextView.font = UIFont.systemFont(ofSize: 28.5)
+      bookTextView.text = textDict[textStringForKapitel] as! String
+      bookTextView.font = UIFont.systemFont(ofSize: 28.0)
        
-        
-      
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
                 tile.layer.borderColor = UIColor.red.cgColor
                 tile.layer.cornerRadius = 3
         
-      
             }
         }
     }
-    // courtesy of
-    // http://stackoverflow.com/a/28896715/359578    
     
-    fileprivate func visibleRangeOfTextView(_ textView: UITextView) -> NSRange {
-        
-        print("visibleRangeOfTextView inoked")
-        
-        let bounds = textView.bounds
-        let origin = CGPoint(x: 100,y: 100) //Overcome the default UITextView left/top margin
-        let startCharacterRange = textView.characterRange(at: origin)
-        if startCharacterRange == nil {
-            return NSMakeRange(0,0)
-        }
-        let startPosition = textView.characterRange(at: origin)!.start
-        
-        let endCharacterRange = textView.characterRange(at: CGPoint(x: bounds.maxX, y: bounds.maxY))
-        if endCharacterRange == nil {
-            return NSMakeRange(0,0)
-        }
-        let endPosition = textView.characterRange(at: CGPoint(x: bounds.maxX, y: bounds.maxY))!.end
-        
-        let startIndex = textView.offset(from: textView.beginningOfDocument, to: startPosition)
-        let endIndex = textView.offset(from: startPosition, to: endPosition)
-        return NSMakeRange(startIndex, endIndex)
-    }
     
     deinit {
        
