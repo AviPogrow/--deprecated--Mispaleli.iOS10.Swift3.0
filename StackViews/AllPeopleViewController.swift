@@ -9,9 +9,7 @@
 import UIKit
 import CoreData
 
-class AllPeopleViewController: UITableViewController,
-                    UINavigationControllerDelegate { //1.Declare conformance
-                                            //NavControllerDelegateProtocol
+class AllPeopleViewController: UITableViewController {
 	
 	@IBOutlet weak var addPersonButton: UIBarButtonItem!
 	
@@ -56,8 +54,8 @@ class AllPeopleViewController: UITableViewController,
 	  super.viewDidLoad()
         
         //2. set ourselves as the delegate of the navigationController
-        navigationController?.delegate = self
-        navigationItem.leftBarButtonItem = self.editButtonItem
+        //navigationController?.delegate = self
+        
         
         do {
             try fetchedResultsController.performFetch()
@@ -164,9 +162,11 @@ class AllPeopleViewController: UITableViewController,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowKapitlach" {
             
-        let navigationController = segue.destination as!  UINavigationController
-        let kapitlachViewController = navigationController.topViewController as!
-               KapitlachViewController
+        //let navigationController = segue.destination as!  UINavigationController
+        //let kapitlachViewController = navigationController.topViewController as!
+           //    KapitlachViewController
+            
+        let kapitlachViewController = segue.destination as! KapitlachViewController
             
             let person = sender as! Person
             
@@ -181,15 +181,14 @@ class AllPeopleViewController: UITableViewController,
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
         if viewController === self {
-           print("popped")
+           print("")
         }
     }
     
    override  func tableView(_ tableView: UITableView,
   		heightForRowAt indexPath: IndexPath) -> CGFloat {
-	
     
-      return 86.0
+        return 86.0
      }
   }
 
@@ -203,7 +202,7 @@ class AllPeopleViewController: UITableViewController,
 	func drawNewNameInCell(_ cell:PersonCell, withPerson person: Person) {
 
 	// the default is to have 15 buttons across the screen
-		let columnsPerPage = 13
+		let columnsPerPage = 15
 	
         var row = 0
         var column = 1

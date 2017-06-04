@@ -11,6 +11,7 @@
 		7F06DFF91E39084100A2A476 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DFF81E39084100A2A476 /* Person.swift */; };
 		7F08D0641E449E7A005FB5BE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F08D0631E449E7A005FB5BE /* DataModel.swift */; };
 		7FCAF7C21E3B8645000B1DE6 /* Tehillim119.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */; };
+		7FCBFE8B1EBC765B0012D732 /* AnimatedMaskLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBFE8A1EBC765B0012D732 /* AnimatedMaskLabel.swift */; };
 		D50F52621D5C8B8F00C0CF82 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D50F525F1D5C8B8F00C0CF82 /* win.mp3 */; };
 		D50F52631D5C8B8F00C0CF82 /* wrong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D50F52601D5C8B8F00C0CF82 /* wrong.m4a */; };
 		D50F52641D5C8B8F00C0CF82 /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D50F52611D5C8B8F00C0CF82 /* ding.mp3 */; };
@@ -57,6 +58,7 @@
 		7F08D0631E449E7A005FB5BE /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		7FB3EB891E4E8CEE006555B2 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		7FCAF7C11E3B8645000B1DE6 /* Tehillim119.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tehillim119.plist; path = ../../AllPeopleVC3.0/AllPeopleVC3.0/Tehillim119.plist; sourceTree = "<group>"; };
+		7FCBFE8A1EBC765B0012D732 /* AnimatedMaskLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedMaskLabel.swift; sourceTree = "<group>"; };
 		D50F525F1D5C8B8F00C0CF82 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		D50F52601D5C8B8F00C0CF82 /* wrong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.m4a; sourceTree = "<group>"; };
 		D50F52611D5C8B8F00C0CF82 /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				D56DB2881D46A52000D2F922 /* GradientView.swift */,
 				D51FC6C01D482D4700CB6820 /* HudView.swift */,
 				D53CFFBD1D5CB4B000F09BD6 /* ExplodeView.swift */,
+				7FCBFE8A1EBC765B0012D732 /* AnimatedMaskLabel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = P77A2352BM;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -334,6 +338,7 @@
 				7F06DFF71E39067A00A2A476 /* LetterInName+properties.swift in Sources */,
 				D5C0BAFA1D4AA76F0059A6A6 /* FadeOutAnimationController.swift in Sources */,
 				D51FC6BF1D48055600CB6820 /* BounceAnimationController.swift in Sources */,
+				7FCBFE8B1EBC765B0012D732 /* AnimatedMaskLabel.swift in Sources */,
 				D53CFFC41D5DD4BC00F09BD6 /* TileView.swift in Sources */,
 				D56DB28B1D46A5D800D2F922 /* DimmingPresentationController.swift in Sources */,
 				D51FC6C11D482D4700CB6820 /* HudView.swift in Sources */,
@@ -461,9 +466,10 @@
 				INFOPLIST_FILE = StackViews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AviPogrow.StackViews;
+				PRODUCT_BUNDLE_IDENTIFIER = APogrow.StackViews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -481,9 +487,10 @@
 				INFOPLIST_FILE = StackViews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AviPogrow.StackViews;
+				PRODUCT_BUNDLE_IDENTIFIER = APogrow.StackViews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

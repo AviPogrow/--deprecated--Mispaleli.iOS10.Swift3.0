@@ -26,10 +26,12 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     //3
     @IBOutlet weak var storyTextView: UIView!
+    
   
+    @IBOutlet weak var bookTextLabel: UILabel!
    
-    @IBOutlet weak var bookTextView: UILabel!
-   
+    @IBOutlet weak var animatedMaskLabel: AnimatedMaskLabel!
+
     
     
     //C. 3 Data Model instance variables
@@ -87,16 +89,14 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-     
-        
-        //1. data model  fetch method
+      //1. data model  fetch method
         do {
             try fetchedResultsController.performFetch()
         } catch {}
         
         //2.
         //3. color the gameView
-        colorViews()
+        //colorViews()
         
         //4. add two gesture recognizers to detect swipe
         // right or left
@@ -111,7 +111,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         
         //7. play sound during scene loading
         //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "win.mp3", ofType: nil)!
+        let path = Bundle.main.path(forResource: "Scrape.wav", ofType: nil)!
         //4. create a file url
         let url = URL(fileURLWithPath: path)
         
@@ -133,9 +133,18 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         //bookTextView.scrollRangeToVisible(visibleRangeOfTextView(bookTextView))
     }
     
+    //State Preservation
+    //If this view is dismissed then we
+    // won't segue to it when the user returns
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        //init the dataModel object
         let dataModel = DataModel()
+        
+        //set the dataModel.indexOfSelectedChecklist to -1
+        //which tells us that this scene should not be saved
+        //for next launch
         dataModel.indexOfSelectedChecklist = -1
         print("the state of indexOfChecklist  is \(dataModel.indexOfSelectedChecklist)")
     }
@@ -213,6 +222,11 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 		dismiss(animated: true, completion: nil)
     }
 	
+    //**** Save My Place!!!********
+    //****  present this scene!!!
+    //User wants to save the current state
+    //we need to save which person was being presented
+    // and which letter of the name was currently highlighted
     @IBAction func doneButtonPressed(_ sender: Any) {
         person.currentKapitelIndex = 101
         CoreDataStackManager.sharedInstance().saveContext()
@@ -224,7 +238,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     func drawNameAndLoadText(withPerson person: Person) {
     
     // the default is to have 15 buttons across the screen
-    let columnsPerPage = 13
+    let columnsPerPage = 15
     
     //3. current row and column number
     var row = 0
@@ -254,11 +268,14 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
             gameView.addSubview(tile)
             column = column +  1
     
-        let viewToExplode = gameView.subviews.last
+       
+       let viewToExplode = gameView.subviews.last
         let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
         tile.superview?.addSubview(explode)
         tile.superview?.sendSubview(toBack: explode)
     
+       
+            
         if column == columnsPerPage {
         column = 1; row = row + 1; y = y + 30
       }
@@ -282,9 +299,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
         var textStringForKapitel = "\(lettr.kapitelImageString!)"
         
       
-      bookTextView.text = textDict[textStringForKapitel] as! String
-      bookTextView.font = UIFont.systemFont(ofSize: 38.0)
-      bookTextView.textAlignment = .center
+      bookTextLabel.text = textDict[textStringForKapitel] as! String
+      bookTextLabel.font = UIFont.systemFont(ofSize: 38.0)
+      bookTextLabel.textAlignment = .center
        
                 tile.alpha = 1.0
                 tile.layer.borderWidth = 3.35
@@ -302,6 +319,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
 	}
 
 }
+//extension #1 ViewController Transition
 extension KapitlachViewController: UIViewControllerTransitioningDelegate {
 
 	//what object should I use to present with?

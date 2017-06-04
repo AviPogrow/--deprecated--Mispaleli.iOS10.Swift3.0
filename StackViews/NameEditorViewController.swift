@@ -29,6 +29,15 @@ class NameEditorViewController: UIViewController {
     @IBOutlet weak var spaceButtonStackView: UIImageView!
 	
 	var imageStringArray = [String]()
+    
+    
+    //enum holding two values that specify which animation controller to use
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    var dismissAnimationsStyle = AnimationStyle.slide
 	
 	
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +76,21 @@ class NameEditorViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
   
-	}
+        //7. play sound during scene loading
+        //3. find sound file using path(forResourse:)
+        let path = Bundle.main.path(forResource: "Scrape.wav", ofType: nil)!
+        //4. create a file url
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOf: url)
+            dingSoundEffect = sound
+            sound.play()
+            
+        } catch {
+            print("couldn't load file")
+        }
+    }
 	
     override func viewWillAppear(_ animated: Bool) {
    	 super.viewWillAppear(animated)
@@ -87,31 +110,33 @@ class NameEditorViewController: UIViewController {
 		animateView(backButtonStackView, toHidden: false)
 		}
 	}
-	
-	@IBAction func donePressed(_ sender: AnyObject) {
-	
+    
+    @IBAction func savePressed(_ sender: Any) {
+        
         person = Person(context: sharedContext)
-		person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
+        person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         
         
-        dismissAnimationsStyle = .slide
-	
+        dismissAnimationsStyle = .fade
+        
         let hudView = HudView.hudInView(self.view, animated: true)
-		
-		hudView.text = "Saved"
-		//audioController.playEffect(SoundWin)
-	
-		afterDelay(1.3) {
-		
-		self.animateView(self.gameView, toHidden: true)
-		self.dismiss(animated: true, completion: nil)
+        
+        hudView.text = "Saved"
+        //audioController.playEffect(SoundWin)
+        
+        afterDelay(1.3) {
+            
+            self.animateView(self.gameView, toHidden: true)
+            self.dismiss(animated: true, completion: nil)
         }
     }
-
-
-
+    
+    
 	
-     func stringForTag(_ kind:Int) -> String {
+    
+
+
+    func stringForTag(_ kind:Int) -> String {
       switch kind {
 	  case 100: return "SpaceNew1"
 	  case 101: return "AlephLetter"
@@ -145,9 +170,9 @@ class NameEditorViewController: UIViewController {
 	
       default: return "TV"
       }
-    }
+    
 	
-	@IBAction func letterTapped(_ sender: UIGestureRecognizer ) {
+	 func letterTapped(_ sender: UIGestureRecognizer ) {
 	
 		var kind: Int!	
 		kind = sender.view!.tag
@@ -192,14 +217,14 @@ class NameEditorViewController: UIViewController {
         //audioController.playEffect(SoundDing)
         
         //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "button_press.wav", ofType: nil)!
+        let path = Bundle.main.path(forResource: "SecondBeep.wav", ofType: nil)!
         //4. create a file url
         let url = URL(fileURLWithPath: path)
         
         do {
             let sound = try AVAudioPlayer(contentsOf: url)
             dingSoundEffect = sound
-            sound.play()
+         //   sound.play()
             
         } catch {
             print("couldn't load file")
@@ -250,7 +275,7 @@ class NameEditorViewController: UIViewController {
          }
      }
 
-    @IBAction func backSpaceButtonTapped(_ sender: UITapGestureRecognizer) {
+    func backSpaceButtonTapped(_ sender: UITapGestureRecognizer) {
 
 		let viewTapped = sender.view!
 		print("the view tapped was \(viewTapped)")
@@ -278,21 +303,18 @@ class NameEditorViewController: UIViewController {
 	
 		}
 	
-    @IBAction func cancelPressed(_ sender: AnyObject) {
+    //dismiss scene with a custome fade animation
+    func cancelPressed(_ sender: AnyObject) {
 		dismissAnimationsStyle = .fade
 		dismiss(animated: true, completion: nil)
 		//audioController.playEffect(SoundWin)
 		}
 	
-    enum AnimationStyle {
-	  case slide
-	  case fade
-	}
-	
-    var dismissAnimationsStyle = AnimationStyle.fade
   }
-
-//tell UIKit what objects the detail view controller should use when transitioning to the detail view
+}
+//tell UIKit which animation object
+// the NameEditor ViewController should use when transitioning
+//to the AllPeopleViewController
 extension NameEditorViewController: UIViewControllerTransitioningDelegate {
 	
   func presentationController(
@@ -325,12 +347,12 @@ extension NameEditorViewController: UIViewControllerTransitioningDelegate {
 		switch dismissAnimationsStyle {
     case .fade:
 	   return FadeOutAnimationController()
-    default:
+    case .slide:
         return SlideOutAnimationController()
 			}
 		}
 	}
-	
+
 
 
 
