@@ -111,9 +111,10 @@ class NameEditorViewController: UIViewController {
 		}
 	}
     
-    @IBAction func savePressed(_ sender: Any) {
-        
-        person = Person(context: sharedContext)
+    
+    @IBAction func doneButtonPressed(_ sender: Any) {
+    
+     person = Person(context: sharedContext)
         person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         
         
@@ -131,9 +132,155 @@ class NameEditorViewController: UIViewController {
         }
     }
     
+    @IBAction func letterTapped(_ sender: UIGestureRecognizer ) {
+        
+        var kind: Int!
+        kind = sender.view!.tag
+        
+        let viewTapped = sender.view!
+        
+        let tempTransform = viewTapped.transform
+        
+        UIView.animate(withDuration: 0.15,
+                       delay: 0.00,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: {
+                        
+                        
+                        viewTapped.transform = viewTapped.transform.scaledBy(x: 2.1, y: 2.1) },
+                       completion: {
+                        (value:Bool) in
+                        
+                        
+                        viewTapped.transform = tempTransform
+        })
+        
+        let newLetterImageString = stringForTag(kind)
+        
+        imageStringArray.append(newLetterImageString)
+        
+        updateTheHudWithStringArray(imageStringArray)
+        
+        
+    }    
     
-	
     
+    
+    
+    
+    
+    
+    
+    //1. pass in array of strings
+    func drawLettersInGameView(_ imageStringArray: [String]) {
+        
+        //audioController.playEffect(SoundDing)
+        
+        //3. find sound file using path(forResourse:)
+        let path = Bundle.main.path(forResource: "SecondBeep.wav", ofType: nil)!
+        //4. create a file url
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOf: url)
+            dingSoundEffect = sound
+            //   sound.play()
+            
+        } catch {
+            print("couldn't load file")
+        }
+        
+        let columnsPerPage = 15
+        
+        //3. current row and column number
+        var rowNumber = 0
+        var column = 1
+        
+        //4. calculate the width and height of each square tile
+        let tileSide = ceil(ScreenWidth / CGFloat(14.5))
+        
+        let marginX = view.bounds.width - 3
+        let x = marginX
+        
+        let marginY = (CGFloat(rowNumber) * tileSide)
+        var y = marginY + 10
+        
+        //iterate through the array and position letters from Right to Left
+        
+        for s in imageStringArray {
+            
+            let tile = TileView(letter: s, sideLength: tileSide)
+            
+            tile.frame = CGRect(
+                x: x + (CGFloat(column) * -tileSide),
+                y: y,
+                
+                width: tileSide, height: tileSide)
+            
+            tile.addLayerEffect()
+            gameView.addSubview(tile)
+            
+            column = column + 1
+            
+            let viewToExplode = gameView.subviews.last
+            let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
+            tile.superview?.addSubview(explode)
+            tile.superview?.sendSubview(toBack: explode)
+            
+            // check if we are at the end of the row
+            if column == columnsPerPage {
+                
+                column = 1;rowNumber = rowNumber + 1; y = y + 30
+            }
+        }
+    }
+    
+    func updateTheHudWithStringArray(_ imageStringArray: [String]) {
+        
+        handleBackSpaceButtonAnimation()
+        
+        drawLettersInGameView(imageStringArray)
+    }
+    
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+    
+      let viewTapped = (sender as AnyObject).view!
+        print("the view tapped was \(viewTapped)")
+        
+        UIView.animate(withDuration: 0.20,
+                       delay: 0.00,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: {
+                        viewTapped.backgroundColor = UIColor.gray
+        },
+                       completion: {
+                        (value:Bool) in
+                        viewTapped.backgroundColor = UIColor.white
+        })
+        
+        imageStringArray.removeLast()
+        
+        for view in gameView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        updateTheHudWithStringArray(imageStringArray)
+        
+        //audioController.playEffect(SoundPop)
+        
+    }
+    
+    
+  
+    //dismiss scene with a custome fade animation
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        dismissAnimationsStyle = .fade
+        dismiss(animated: true, completion: nil)
+        //audioController.playEffect(SoundWin)
+    }
+    
+}    
 
 
     func stringForTag(_ kind:Int) -> String {
@@ -172,145 +319,16 @@ class NameEditorViewController: UIViewController {
       }
     
 	
-	 func letterTapped(_ sender: UIGestureRecognizer ) {
 	
-		var kind: Int!	
-		kind = sender.view!.tag
-        
-        let viewTapped = sender.view!
-		
-   		let tempTransform = viewTapped.transform
-		
-        UIView.animate(withDuration: 0.15,
-		delay: 0.00,
-		options: UIViewAnimationOptions.curveEaseOut,
-		animations: {
-			
-				
-        viewTapped.transform = viewTapped.transform.scaledBy(x: 2.1, y: 2.1) },
-		 completion: {
-		  (value:Bool) in
-		  
-		  
-		  viewTapped.transform = tempTransform
-		 })
-		
-		let newLetterImageString = stringForTag(kind)
-	
-		imageStringArray.append(newLetterImageString)
-	
-		updateTheHudWithStringArray(imageStringArray)
-	
-		
-	}
-	
-	func updateTheHudWithStringArray(_ imageStringArray: [String]) {
-		
-		handleBackSpaceButtonAnimation()
-	
-		drawLettersInGameView(imageStringArray)
-	}
+
     
-    //1. pass in array of strings
-	func drawLettersInGameView(_ imageStringArray: [String]) {
-	 
-        //audioController.playEffect(SoundDing)
-        
-        //3. find sound file using path(forResourse:)
-        let path = Bundle.main.path(forResource: "SecondBeep.wav", ofType: nil)!
-        //4. create a file url
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let sound = try AVAudioPlayer(contentsOf: url)
-            dingSoundEffect = sound
-         //   sound.play()
-            
-        } catch {
-            print("couldn't load file")
-        }
-        
-        let columnsPerPage = 15
-			
-		//3. current row and column number
-		var rowNumber = 0
-		var column = 1
-	
-		//4. calculate the width and height of each square tile
-		let tileSide = ceil(ScreenWidth / CGFloat(14.5))
-		
-        let marginX = view.bounds.width - 3
-		let x = marginX
-		
-        let marginY = (CGFloat(rowNumber) * tileSide)
-		var y = marginY + 10
-	
-//iterate through the array and position letters from Right to Left
-	
-		for s in imageStringArray {
-		
-		let tile = TileView(letter: s, sideLength: tileSide)
-		
-		tile.frame = CGRect(
-		x: x + (CGFloat(column) * -tileSide),
-		y: y,
-		
-		width: tileSide, height: tileSide)
-		
-		tile.addLayerEffect()
-        gameView.addSubview(tile)
-	
-		column = column + 1
-	
-		let viewToExplode = gameView.subviews.last
-		let explode = ExplodeView(frame:CGRect(x: viewToExplode!.center.x, y: viewToExplode!.center.y, width: 2,height: 2))
-   		 tile.superview?.addSubview(explode)
-		tile.superview?.sendSubview(toBack: explode)
+   
 
-		// check if we are at the end of the row
-		if column == columnsPerPage {
-		
-        column = 1;rowNumber = rowNumber + 1; y = y + 30
-            }
-         }
-     }
-
-    func backSpaceButtonTapped(_ sender: UITapGestureRecognizer) {
-
-		let viewTapped = sender.view!
-		print("the view tapped was \(viewTapped)")
-		
-		UIView.animate(withDuration: 0.20,
-		delay: 0.00,
-		options: UIViewAnimationOptions.curveEaseOut,
-		animations: {
-				viewTapped.backgroundColor = UIColor.gray
-				},
-		 completion: {
-		  (value:Bool) in
-		  viewTapped.backgroundColor = UIColor.white
-		 })
+    
+        
+   
 	
-		imageStringArray.removeLast()
-	
-        for view in gameView.subviews {
-			view.removeFromSuperview()
-		}
-	
-		updateTheHudWithStringArray(imageStringArray)
-	
-		//audioController.playEffect(SoundPop)
-	
-		}
-	
-    //dismiss scene with a custome fade animation
-    func cancelPressed(_ sender: AnyObject) {
-		dismissAnimationsStyle = .fade
-		dismiss(animated: true, completion: nil)
-		//audioController.playEffect(SoundWin)
-		}
-	
-  }
+    
 }
 //tell UIKit which animation object
 // the NameEditor ViewController should use when transitioning

@@ -162,11 +162,11 @@ class AllPeopleViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowKapitlach" {
             
-        //let navigationController = segue.destination as!  UINavigationController
-        //let kapitlachViewController = navigationController.topViewController as!
-           //    KapitlachViewController
+        let navigationController = segue.destination as!  UINavigationController
+        let kapitlachViewController = navigationController.topViewController as!
+               KapitlachViewController
             
-        let kapitlachViewController = segue.destination as! KapitlachViewController
+     
             
             let person = sender as! Person
             

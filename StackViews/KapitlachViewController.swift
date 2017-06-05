@@ -30,7 +30,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
   
     @IBOutlet weak var bookTextLabel: UILabel!
    
-    @IBOutlet weak var animatedMaskLabel: AnimatedMaskLabel!
+
 
     
     
