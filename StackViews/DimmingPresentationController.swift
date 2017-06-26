@@ -14,6 +14,7 @@ class DimmingPresentationController: UIPresentationController {
     override var shouldRemovePresentersView : Bool {
     return false
   }
+    
     //2. create instance of GradientView and call it dimmingView
     lazy var dimmingView = GradientView(frame: CGRect.zero)
   

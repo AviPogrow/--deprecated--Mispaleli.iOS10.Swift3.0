@@ -118,7 +118,7 @@ class NameEditorViewController: UIViewController {
         person.addPersonToCoreDataUsingStringArray(person: person,imageStringArray)
         
         
-        dismissAnimationsStyle = .fade
+        dismissAnimationsStyle = .slide
         
         let hudView = HudView.hudInView(self.view, animated: true)
         
@@ -163,13 +163,6 @@ class NameEditorViewController: UIViewController {
         
         
     }    
-    
-    
-    
-    
-    
-    
-    
     
     //1. pass in array of strings
     func drawLettersInGameView(_ imageStringArray: [String]) {
@@ -271,13 +264,11 @@ class NameEditorViewController: UIViewController {
         
     }
     
-    
-  
     //dismiss scene with a custome fade animation
     @IBAction func cancelPressed(_ sender: AnyObject) {
-        dismissAnimationsStyle = .fade
+        dismissAnimationsStyle = .slide
         dismiss(animated: true, completion: nil)
-        //audioController.playEffect(SoundWin)
+        
     }
     
 }    
@@ -317,19 +308,9 @@ class NameEditorViewController: UIViewController {
 	
       default: return "TV"
       }
-    
-	
-	
-
-    
-   
-
-    
-        
-   
-	
-    
 }
+
+
 //tell UIKit which animation object
 // the NameEditor ViewController should use when transitioning
 //to the AllPeopleViewController

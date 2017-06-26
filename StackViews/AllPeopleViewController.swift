@@ -53,6 +53,8 @@ class AllPeopleViewController: UITableViewController {
 	override func viewDidLoad() {
 	  super.viewDidLoad()
         
+       navigationItem.leftBarButtonItem = editButtonItem
+        
         //2. set ourselves as the delegate of the navigationController
         //navigationController?.delegate = self
         
@@ -162,12 +164,18 @@ class AllPeopleViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowKapitlach" {
             
-        let navigationController = segue.destination as!  UINavigationController
-        let kapitlachViewController = navigationController.topViewController as!
-               KapitlachViewController
+        
+    let kapitlachViewController = segue.destination as! KapitlachViewController
+    //let navigationController = segue.destination as!  UINavigationController
+        
+        
+//let kapitlachViewController = navigationController.topViewController as!
+               //KapitlachViewController
+            
+            
+        kapitlachViewController.transitioningDelegate = kapitlachViewController
             
      
-            
             let person = sender as! Person
             
             kapitlachViewController.person = person
@@ -238,7 +246,46 @@ class AllPeopleViewController: UITableViewController {
 
 			}
 		}
+    
 }
+/*
+extension AllPeopleViewController: UIViewControllerTransitioningDelegate {
+    
+    //what object should I use to present with?
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController)
+        -> UIPresentationController? {
+            
+            
+            //initialize and return an instance of this presentation
+            // controller to handle transition between
+            // the specified view controllers
+            return DimmingPresentationController(
+                presentedViewController: presented,
+                presenting: presenting)
+    }
+    
+    
+    
+    
+    
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return BounceAnimationController()
+        
+    }
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        
+        return SlideOutAnimationController()
+    }
+}
+    
+ */
 
 
 

@@ -8,40 +8,23 @@
 
 import UIKit
 
-class SlideOutAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-	
-  //1 set the time for the animation
-  func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-    return 1.3
-  }
-  
-	
- //2
-  func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-	
-	
-    if let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) {
-		
-	    _ = transitionContext.containerView
+import UIKit
 
-		
-		//call the method that returns the duration defined in the first function
-		// and set the duration variable
-		let duration = transitionDuration(using: transitionContext)
-		
-	   	UIView.animate(withDuration: duration, animations: {
-		
-		//scale it down to half its size
-		fromView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-		
-		//take the view's center position and subtract the height of the screen
-		//fromView.center.y -= containerView.bounds.size.height
-			
-		
-		
-	   }, completion: { finished in
-        transitionContext.completeTransition(finished)
-      })
+class SlideOutAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.3
     }
-  }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) {
+            let containerView = transitionContext.containerView
+            let duration = transitionDuration(using: transitionContext)
+            UIView.animate(withDuration: duration, animations: {
+                fromView.center.y -= containerView.bounds.size.height
+                fromView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            }, completion: { finished in
+                transitionContext.completeTransition(finished)
+            })
+        }
+    }
 }

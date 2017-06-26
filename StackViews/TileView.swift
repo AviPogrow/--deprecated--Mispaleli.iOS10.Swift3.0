@@ -53,9 +53,10 @@ fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
     
     */
     func addLayerEffect() {
-	self.layer.borderWidth = 1.2
+	self.layer.borderWidth = 0.8
 	self.layer.borderColor = UIColor.gray.cgColor
 	
+    /*
 	//create the tile shadow
     self.layer.shadowColor = UIColor.gray.cgColor
     self.layer.shadowOpacity = 0.25
@@ -65,6 +66,7 @@ fileprivate var tempTransform: CGAffineTransform = CGAffineTransform.identity
     
     let path = UIBezierPath(rect: self.bounds)
     self.layer.shadowPath = path.cgPath
+ */
     }
 }
   

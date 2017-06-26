@@ -11,7 +11,16 @@ import CoreData
 //1. import AVFoundation
 import AVFoundation
 
-class KapitlachViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class KapitlachViewController: UIViewController,
+        NSFetchedResultsControllerDelegate {
+    
+    //override var preferredStatusBarStyle: UIStatusBarStyle {
+    //    return .lightContent
+   // func position(for bar: UIBarPositioning) -> UIBarPosition {
+   // return .topAttached
+  //}
+   
+    
 	
     //2. store audio player as a property
     var dingSoundEffect: AVAudioPlayer!
@@ -31,7 +40,9 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     @IBOutlet weak var bookTextLabel: UILabel!
    
 
-
+    
+    
+   
     
     
     //C. 3 Data Model instance variables
@@ -72,19 +83,22 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     // MARK:- 4 View Controller methods
     //1. required init
+    //enum holding two values that specify which animation controller to use
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    var dismissAnimationsStyle = AnimationStyle.slide
+    
+    
     required init?(coder aDecoder: NSCoder) {
-			super.init(coder: aDecoder)
-        //audioController = AudioController()
-		//audioController.preloadAudioEffects(AudioEffectFiles)
-		
-	// tell UIKit that this VC uses a custom presentation
-	//	modalPresentationStyle = .custom
-		
-		//set the delegate that will call the methods for the 
-		// custom presentation
-	//	transitioningDelegate = self
-		
-	}
+       super.init(coder: aDecoder)
+        //tell UIKit that this view controller uses a custom presentation object
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
+    }
+    
 	//2. viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -238,20 +252,20 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
     func drawNameAndLoadText(withPerson person: Person) {
     
     // the default is to have 15 buttons across the screen
-    let columnsPerPage = 15
+    let columnsPerPage = 18
     
     //3. current row and column number
     var row = 0
     var column = 1
     
     //4. calculate the width and height of each square tile
-    let tileSide = ceil(ScreenWidth / CGFloat(14.5))
+    let tileSide = ceil(ScreenWidth / CGFloat(18.5))
     
     var  marginX = view.bounds.width - 3
     let x = marginX
     
     var  marginY = (CGFloat(row) * tileSide)
-    var y = marginY + 10
+    var y = marginY + 5
         
     //********************** start the for loop ***************************
         for (index, lettr) in person.lettersInName.enumerated() {
@@ -277,7 +291,7 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
        
             
         if column == columnsPerPage {
-        column = 1; row = row + 1; y = y + 30
+        column = 1; row = row + 1; y = y + 25
       }
     
      let index = Int16(index + 101)
@@ -317,7 +331,6 @@ class KapitlachViewController: UIViewController, NSFetchedResultsControllerDeleg
        
 		print("deinint \(self)")
 	}
-
 }
 //extension #1 ViewController Transition
 extension KapitlachViewController: UIViewControllerTransitioningDelegate {
@@ -352,7 +365,5 @@ extension KapitlachViewController: UIViewControllerTransitioningDelegate {
 		return SlideOutAnimationController()
     }
 }
-
-
 
 
